@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta name="google-site-verification" content="QoinMZSsPx9E_mXxWzPE_izH-Z2Wr-LUrHTe6xLp5W8" />
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -59,7 +60,7 @@
                 }
             }
         }
-            </script>
+    </script>
    
     <style>
         body {
@@ -175,6 +176,44 @@
             border-radius: 0.75rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
+        .poem-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #D4A017;
+        }
+        .dark .poem-card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .poem-card:hover {
+            transform: translateY(-0.25rem);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .dark .poem-card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .visitor-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(58, 74, 95, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        .dark .visitor-counter {
+            background-color: rgba(212, 160, 23, 0.9);
+            color: #1E293B;
+        }
+        .visitor-counter i {
+            margin-left: 5px;
+        }
        
         @media (max-width: 768px) {
             .hero-title {
@@ -186,10 +225,90 @@
             .clans-table-container {
                 max-height: 400px;
             }
+            .visitor-counter {
+                bottom: 10px;
+                left: 10px;
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+        
+        /* New styles for historical photo section */
+        .historical-photo {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .historical-photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .historical-photo:hover .photo-caption {
+            opacity: 1;
+        }
+        
+        /* Enhanced timeline styling */
+        .timeline-container {
+            position: relative;
+            padding-right: 3rem;
+        }
+        
+        .timeline-connector {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 1.5rem;
+            width: 2px;
+            background: linear-gradient(to bottom, #805D3D, #D4A017);
+        }
+        
+        /* Improved table styling */
+        .clan-table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .clan-table th {
+            position: sticky;
+            top: 0;
+            background-color: #3A4A5F;
+            color: white;
+            z-index: 10;
+        }
+        
+        .clan-table tr:nth-child(even) {
+            background-color: rgba(58, 74, 95, 0.05);
+        }
+        
+        .dark .clan-table tr:nth-child(even) {
+            background-color: rgba(212, 160, 23, 0.05);
         }
     </style>
 </head>
 <body class="text-gray-800 dark:text-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-primary dark:to-dark-secondary">
+    <!-- عداد الزوار -->
+    <div id="visitorCounter" class="visitor-counter hidden">
+        <i class="fas fa-users"></i>
+        <span id="visitorCount">0</span> زائر
+    </div>
+
     <!-- Header & Navigation -->
     <header class="relative">
         <div class="relative h-screen max-h-[800px] hero-section" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimZIAUeTU_MN0yMv5Sg3XJdwgfBWXX24A8DD6yKQZSG9AFiZSnj5u_8d3FNDCYBe-O8nG_cErsg3AwPYtXAg8kK7Z0boWAAVSKzq6ygadOZqWmEoAtnJGz-Rt9J_gSz-UUfJ3pzw157XdY/s320/%25D8%25AD%25D8%25B5%25D9%2586+%25D8%25A7%25D8%25A8%25D9%2586+%25D8%25A8%25D9%2583%25D8%25B1%25D9%258A.jpg');">
@@ -209,9 +328,16 @@
                     <a href="#lands" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">الأراضي</a>
                     <a href="#history" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">الأحداث التاريخية</a>
                     <a href="#figures" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">شخصيات بارزة</a>
+                    <a href="#poems" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">قصائد تراثية</a>
+                    <button id="dark-mode-toggle-desktop" class="text-white hover:text-accent transition duration-300 focus:outline-none">
+                        <i class="fas fa-moon text-xl"></i>
+                    </button>
                 </div>
                
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center space-x-4 space-x-reverse">
+                    <button id="dark-mode-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-moon text-xl"></i>
+                    </button>
                     <button id="menu-toggle" class="text-white focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
@@ -227,6 +353,7 @@
                     <a href="#lands" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">الأراضي</a>
                     <a href="#history" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">الأحداث التاريخية</a>
                     <a href="#figures" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">شخصيات بارزة</a>
+                    <a href="#poems" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">قصائد تراثية</a>
                 </div>
             </div>
            
@@ -246,7 +373,8 @@
             </div>
         </div>
     </header>
-       <!-- مقدمة -->
+
+    <!-- مقدمة -->
     <section id="intro" class="py-16 md:py-20 bg-gray-50 dark:bg-dark-primary section-pattern">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex flex-col lg:flex-row gap-10 items-center">
@@ -256,6 +384,7 @@
                         <p class="mb-4">بسم الله الرحمن الرحيم</p>
                         <p class="mb-4">تتألق قبيلة بني مروان كإحدى الركائز التاريخية والثقافية في تهامة، حيث حفرت اسمها في سجل الزمن بإرث يمتد من عصور ما قبل الإسلام إلى الحاضر المعاصر. كفرع عريق من عك التهامية، تجسد هذه القبيلة قصة صمود وتكيف، حيث واجهت تحديات الغزوات، الصراعات السياسية، والتحولات الاجتماعية، محافظةً على هويتها ونفوذها في جازان وحجة.</p>
                         <p class="mb-4">من حماية سواحل ميدي إلى قيادة معارك الشعاب، ومن دعم الدولة السعودية إلى المساهمة في بناء مستقبل مشرق، تروي بني مروان حكاية شعب متجذر في أرضه، متطلع إلى آفاق جديدة.</p>
+                        <p class="mb-4">هذا الموقع يوثق تاريخ القبيلة العريق، ويبرز إسهاماتها في بناء المنطقة، ويحفظ تراثها الثقافي للأجيال القادمة.</p>
                     </div>
                 </div>
                 <div class="lg:w-1/2 flex justify-center">
@@ -289,6 +418,10 @@
                                 <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">6</span>
                                 <span class="text-gray-700 dark:text-gray-300">شخصيات بارزة</span>
                             </li>
+                            <li class="flex items-center">
+                                <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">7</span>
+                                <span class="text-gray-700 dark:text-gray-300">قصائد تراثية</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -314,9 +447,9 @@
                     <p class="mb-4">يرجع نسب القبيلة إلى <strong class="text-secondary">مروان بن وداعة بن زيد بن عمران بن ربيعة بن عبس بن شحارة بن غالب بن عبد الله بن عك بن عدنان بن أدد بن مقوم بن ناحور بن تيرح بن يعرب بن يشجب بن نابت بن إسماعيل بن إبراهيم الخليل عليهما السلام</strong>.</p>
                     <p class="mb-4">هذا النسب، الذي توارثته الروايات القبلية ودعمته بعض المصادر التاريخية، يربط بني مروان بجذور عدنانية عميقة، مما يعزز مكانتها ضمن النسيج القبلي للجزيرة العربية.</p>
                     <p class="mb-4">اشتهرت قبيلة عك، التي تُعتبر بني مروان امتدادًا لها، بحريتها واستقلالها قبل الإسلام، إذ لم تخضع لسلطة الممالك المجاورة إلا في سياقات استثنائية، كما وثّق ياقوت الحموي في "معجم البلدان" (القرن الثالث عشر الميلادي). وبني مروان، كفرع رئيسي من عك، ورثوا هذا الإرث من النضال والصمود، فأصبحوا البطن الباقي من عمران بن ربيعة بن عبس بن عبد الله العكي، الجذم الأساسي لقبيلة عك. هذا الارتباط جعلهم حاملي لواء الهوية العكية في تهامة، حيث برزوا كقوة سياسية وعسكرية مستقلة.</p>
-                    <p class="mb-4">تؤكد المصادر التاريخية العربية، مثل "صفة جزيرة العرب" للهمداني (القرن العاشر الميلادي)، سيطرة عك على السواحل الغربية للجزيرة العربية، مع دور بارز لبني مروان في حماية هذه المناطق من الغزوات الخارجية. كما وثّق الرحالة البريطاني ريتشارد فرانسيس برتون في "Personal Narrative of a Pilgrimage to Al-Madinah and Meccah" (1855) استقلال قبائل تهامة، بما في ذلك بني مروان، عن السلطات العثمانية في منتصف القرن التاسع عشر الميلادي. أشار برتون إلى قوتهم العسكرية وسيطرتهم على مناطق مثل وادي مور والشعاب، مما يعكس مكانتهم كقوة محلية عصية على الخضوع.</p>
+                    <p class="mb-4">تؤكد المصادر التاريخية العربية، مثل "صفة جزيرة العرب" للهمداني (القرن العاشر الميلادي)، سيطرة عك على السواحل الغربية للجزيرة العربية، مع دور بارز لبني مروان في حماية هذه المناطق من الغزوات الخارجية. كما وثّق الرحالة البريطاني ريتشارد فرانسيس برتون في كتابه "Personal Narrative of a Pilgrimage to Al-Madinah and Meccah" (1855) استقلال قبائل تهامة، بما في ذلك بني مروان، عن السلطات العثمانية في منتصف القرن التاسع عشر الميلادي. أشار برتون إلى قوتهم العسكرية وسيطرتهم على مناطق مثل وادي مور والشعاب، مما يعكس مكانتهم كقوة محلية عصية على الخضوع.</p>
+                    <p class="mb-4">وفقًا للبحث المنشور في مجلة "نفحات إبداعية" (2020) لمحمود محمد غالب، فإن بني مروان شكلوا جزءًا أساسيًا من التركيبة القبلية في تهامة اليمنية، وكان لهم دور محوري في الأحداث التاريخية للمنطقة، خاصة خلال الفترات التي شهدت صراعات مع القوى الخارجية.</p>
                 </div>
-               
                 <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg border-r-4 border-accent mt-6">
                     <h4 class="text-lg font-semibold mb-2 text-secondary">ملاحظات حول النسب:</h4>
                     <p class="text-gray-700 dark:text-gray-300">توجد اختلافات طفيفة في تسلسل النسب بين الروايات القبلية وبعض المصادر المكتوبة، خاصة في الأجيال الوسطى بين عك وعدنان، لكن الإجماع يبقى على انتماء بني مروان إلى عك.</p>
@@ -329,6 +462,7 @@
                             <li>"معجم البلدان" - ياقوت الحموي (القرن الثالث عشر الميلادي)</li>
                             <li>"صفة جزيرة العرب" - أبو محمد الحسن بن أحمد الهمداني (القرن العاشر الميلادي)</li>
                             <li>"Personal Narrative of a Pilgrimage to Al-Madinah and Meccah" - ريتشارد فرانسيس برتون (1855)</li>
+                            <li>"نفحات إبداعية" - محمود محمد غالب (2020)</li>
                         </ul>
                     </div>
                     <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg shadow">
@@ -340,10 +474,35 @@
                         </ul>
                     </div>
                 </div>
+                
+                <!-- Historical Photo Section -->
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fas fa-camera-retro mr-3 text-secondary"></i>
+                        صورة تاريخية لمقاتلي بني مروان
+                    </h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="historical-photo">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBe0bTb10u8i5MhIEddZZ_7recY6p6-Jt-6OS6raqOFifj2Fb01_ckSrLjUS2sKPkgl-I3t43KREVHXqv0_jV5vaU8pl2q3MW4As3wWD17hyMnCpZJg04P1LkJK9Qa2ihUc9BrRfwhaAA/s1200/tihama-1977-1.jpg" 
+                                 alt="مقاتلون من بني مروان من أرشيف الدولة العثمانية" 
+                                 class="w-full h-auto rounded-lg">
+                            <div class="photo-caption">
+                                <p class="font-bold">مقاتلون من بني مروان - أواخر القرن التاسع عشر</p>
+                                <p class="text-sm">من أرشيف الدولة العثمانية</p>
+                            </div>
+                        </div>
+                        <div class="prose dark:prose-invert text-lg leading-relaxed">
+                            <p class="mb-4">تمثل هذه الصورة النادرة من الأرشيف العثماني مجموعة من مقاتلي بني مروان في أواخر القرن التاسع عشر، وهي تعكس المظهر التقليدي للمقاتلين التهاميين في تلك الفترة.</p>
+                            <p class="mb-4">يظهر المقاتلون مسلحين بالأسلحة التقليدية التي كانت سائدة في ذلك الوقت، مع الاحتفاظ بالزي القبلي المميز لأهل تهامة.</p>
+                            <p class="mb-4">هذه الصورة تقدم شهادة بصرية نادرة على الحياة العسكرية للقبيلة خلال فترة الصراع مع الدولة العثمانية، كما توثق المظهر الخارجي لأبناء القبيلة في تلك الحقبة التاريخية.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-        <!-- فروع وفخوذ القبيلة -->
+
+    <!-- فروع وفخوذ القبيلة -->
     <section id="branches" class="py-16 md:py-20 bg-gray-50 dark:bg-dark-primary section-pattern">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
@@ -359,7 +518,7 @@
                 </h3>
                
                 <div class="clans-table-container mt-6">
-                    <table class="w-full text-right border-collapse">
+                    <table class="w-full text-right border-collapse clan-table">
                         <thead>
                             <tr>
                                 <th class="p-3 bg-primary text-white font-semibold border border-gray-300 dark:border-gray-600">الفخذ</th>
@@ -496,13 +655,14 @@
                         </tbody>
                     </table>
                 </div>
-               
+                
                 <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg border-r-4 border-accent mt-8">
                     <h4 class="text-lg font-semibold mb-2 text-secondary">ملاحظات حول الفخوذ:</h4>
                     <ul class="list-disc pr-5 space-y-2 text-gray-700 dark:text-gray-300">
                         <li>تشكل الفخوذ شبكة اجتماعية معقدة، حيث يتفرع كل فخذ إلى بيوت فرعية، مما يعزز تماسك القبيلة وتنوعها.</li>
                         <li>فخوذ مثل بني بكري والمحاجبة لعبت أدوارًا قيادية بارزة، خاصة في المعارك التاريخية والتفاوض مع القوى الإقليمية، كما يتضح في تسلسل المشايخ.</li>
                         <li>تضم القبيلة أحلافًا تاريخية، مثل بني الحكم (حكامية بني مروان سابقًا)، الخميسين (من حاشد)، وبني دارس (من بني الحارث)، وإن كانت هذه القبائل مستقلة اليوم. أما الحراضية فتشمل أسرًا مروانية وأحلافًا من بني هاشم وهمدان، مع احتفاظ الأشراف (مثل الحواذنة وآل خيرات) بنسبهم.</li>
+                        <li>وفقًا للبحث المنشور في "نفحات إبداعية"، فإن بعض الفخوذ مثل الفرانتة كانت قد هاجرت من حيران إلى مناطق أخرى لأسباب اقتصادية وسياسية، وهو ما تؤكده القصائد التراثية.</li>
                     </ul>
                 </div>
                
@@ -513,6 +673,7 @@
                             <li>"صفة جزيرة العرب" - أبو محمد الحسن بن أحمد الهمداني (القرن العاشر الميلادي)</li>
                             <li>"تحفة القارئ والسامع في اختصار تاريخ اللامع" - عبد الله بن علي العمودي</li>
                             <li>"Military Handbooks on Arabia" - الموسوعة البريطانية (1913-1917)</li>
+                            <li>"نفحات إبداعية" - محمود محمد غالب (2020)</li>
                         </ul>
                     </div>
                     <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg shadow">
@@ -521,6 +682,7 @@
                             <li>"تاريخ المملكة العربية السعودية" - عبد الله الصالح العثيمين</li>
                             <li>"Asir Before the First World War" - كيناهان كورنواليس (1916)</li>
                             <li>روايات كبار السن في القبيلة</li>
+                            <li>أرشيفات المكتبات الجامعية المتخصصة في الدراسات العربية</li>
                         </ul>
                     </div>
                 </div>
@@ -546,14 +708,36 @@
                     <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
                         <p class="mb-4">تمتد قبيلة بني مروان عبر مناطق تهامة في المملكة العربية السعودية واليمن، حيث تتوزع فخوذها على النحو التالي:</p>
                         <ul class="list-disc pr-5 space-y-2 mb-4">
-                            <li><strong>في السعودية:</strong> تتركز القبيلة في منطقة جازان، خاصة في محافظة الطوال والحرث</li>
-                            <li><strong>في اليمن:</strong> تنتشر القبيلة في محافظة حجة، خاصة في مديريات حيران وميدي وحرض</li>
+                            <li><strong>في السعودية:</strong> تتركز القبيلة في منطقة جازان، خاصة في محافظة الطوال والحرث وصامطة، حيث يشكلون نسبة كبيرة من سكان هذه المناطق.</li>
+                            <li><strong>في اليمن:</strong> تنتشر القبيلة في محافظة حجة، خاصة في مديريات حيران وميدي وحرض، بالإضافة إلى وجود في محافظتي الحديدة وصعدة.</li>
                         </ul>
-                        <p class="mb-4">يتميز أبناء القبيلة بترابط اجتماعي قوي رغم التوزع الجغرافي، حيث يحافظون على علاقات المصاهرة والزيارات المنتظمة.</p>
+                        <p class="mb-4">يتميز أبناء القبيلة بترابط اجتماعي قوي رغم التوزع الجغرافي، حيث يحافظون على علاقات المصاهرة والزيارات المنتظمة، خاصة في المناسبات الاجتماعية والمواسم الزراعية.</p>
+                        <p class="mb-4">وفقًا للبحث المنشور في "نفحات إبداعية"، فإن بعض فخوذ بني مروان مثل الفرانتة قد هاجرت من حيران إلى مناطق أخرى مثل الواعظات ووادي مور والحديدة لأسباب اقتصادية وسياسية، وهو ما تؤكده القصائد التراثية التي تحكي عن هذه الهجرات.</p>
                     </div>
                     <div class="mt-4">
                         <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">"صفة جزيرة العرب" - الهمداني، "Asir Before the First World War" - كيناهان كورنواليس، روايات قبلية</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"صفة جزيرة العرب" - الهمداني، "Asir Before the First World War" - كيناهان كورنواليس، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
+                    </div>
+                </div>
+               
+                <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-4 text-primary flex items-center">
+                        <i class="fas fa-users mr-3 text-secondary"></i>
+                        الخصائص الديموغرافية
+                    </h3>
+                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
+                        <p class="mb-4">تتميز قبيلة بني مروان بالخصائص التالية:</p>
+                        <ul class="list-disc pr-5 space-y-2 mb-4">
+                            <li>يبلغ عدد أفراد القبيلة عشرات الآلاف موزعين بين السعودية واليمن، مع وجود جاليات صغيرة في دول الخليج الأخرى.</li>
+                            <li>يغلب على القبيلة الطابع الريفي والزراعي في المناطق الداخلية، بينما يعمل سكان المناطق الساحلية في الصيد والتجارة، مع توجه متزايد نحو الوظائف الحكومية والتعليم العالي في العقود الأخيرة.</li>
+                            <li>تحافظ القبيلة على تقاليدها الثقافية والاجتماعية رغم التحضر، مع وجود حركة تنمية وتعليم نشطة بين أبنائها.</li>
+                            <li>تتميز القبيلة بتنوع مهني كبير، حيث برز منها رجال أعمال، أكاديميون، ضباط عسكريون، ومسؤولون حكوميون في كلا البلدين.</li>
+                        </ul>
+                        <p class="mb-4">وفقًا للدراسات الحديثة، فإن بني مروان يحافظون على معدلات عالية من الزواج الداخلي ضمن القبيلة، مع وجود تحالفات مصاهرة مع قبائل مجاورة مثل خولان وحاشد.</p>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">تعدادات رسمية، تقديرات قبلية، دراسات أكاديمية من المكتبات البحثية المتخصصة</p>
                     </div>
                 </div>
             </div>
@@ -578,10 +762,26 @@
                         <div class="text-gray-700 dark:text-gray-300">قرية وتجمع سكني</div>
                     </div>
                 </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="bg-white dark:bg-dark-secondary p-6 rounded-lg shadow text-center">
+                        <div class="text-4xl font-bold text-accent mb-2">5</div>
+                        <div class="text-gray-700 dark:text-gray-300">محافظات يمنية</div>
+                    </div>
+                    <div class="bg-white dark:bg-dark-secondary p-6 rounded-lg shadow text-center">
+                        <div class="text-4xl font-bold text-accent mb-2">3</div>
+                        <div class="text-gray-700 dark:text-gray-300">محافظات سعودية</div>
+                    </div>
+                    <div class="bg-white dark:bg-dark-secondary p-6 rounded-lg shadow text-center">
+                        <div class="text-4xl font-bold text-accent mb-2">100+</div>
+                        <div class="text-gray-700 dark:text-gray-300">مسجد ومدرسة قرآنية</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-        <!-- الأراضي -->
+
+    <!-- الأراضي -->
     <section id="lands" class="py-16 md:py-20 bg-gray-50 dark:bg-dark-primary section-pattern">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
@@ -600,18 +800,20 @@
                         <p class="mb-4">تمتد أراضي بني مروان عبر المناطق التالية:</p>
                         <ul class="list-disc pr-5 space-y-2 mb-4">
                             <li>جنوب حيران شمالاً مروراً بميدي</li>
-                            <li>مدينة حرض</li>
+                            <li>مدينة حرض وضواحيها</li>
                             <li>وادي ابن عبدالله والقرى الواقعة على امتداده</li>
                             <li>منطقة المير شمال شرق وجنوب شرق فج حرض والجبال والسهول الواقعة شرقها</li>
-                            <li>محافظة الطوال وأجزاء من محافظتي الحرث وصامطة</li>
+                            <li>محافظة الطوال وأجزاء من محافظتي الحرث وصامطة في السعودية</li>
+                            <li>أجزاء من مديريات بكيل المير وحيران في محافظة حجة اليمنية</li>
                         </ul>
+                        <p class="mb-4">وفقًا للبحث المنشور في "نفحات إبداعية"، فإن بني مروان كانوا يسيطرون على طرق تجارية مهمة بين تهامة والمرتفعات اليمنية، مما أعطاهم أهمية استراتيجية في التجارة والصراعات السياسية عبر التاريخ.</p>
                     </div>
                     <div class="mt-4">
                         <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">"Personal Narrative" - ريتشارد فرانسيس برتون، "صفة جزيرة العرب" - الهمداني</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"Personal Narrative" - ريتشارد فرانسيس برتون، "صفة جزيرة العرب" - الهمداني، "نفحات إبداعية" - محمود محمد غالب</p>
                     </div>
                 </div>
-               
+                                
                 <div class="bg-white dark:bg-dark-secondary rounded-xl shadow-lg p-6 md:p-8">
                     <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
                         <i class="fas fa-chess-rook mr-3 text-secondary"></i>
@@ -623,14 +825,17 @@
                             <li><strong>حصن ابن بكري:</strong> يقع في قرية الخفر، إحدى قرى فج حرض، وحاليًا ضمن مديرية حرض الحدودية في اليمن. يعود تاريخ بنائه إلى القرن التاسع عشر (1900 م) بأمر من الشيخ عبدالله بن يحيى أبكر بكري - طيب الله ثراه -. كان مركزًا لجمع القبائل المروانية، ويتكون من طابقين يحتويان على عدة غرف، منها ما هو مُعد للمراقبة ومخازن للسلاح.</li>
                             <li><strong>قلعة القماحية:</strong> بناها العثمانيون في القرن الثامن عشر الميلادي (وقيل في القرن السادس عشر) لمراقبة السواحل من عمليات التمرد والقرصنة، وكمركز بحري لمواجهة العمليات البحرية الإيطالية في الساحل الأفريقي. استولت عليها قبائل بني مروان بعد طرد العثمانيين من ميدي، وكانت مركزًا مهمًا للمراقبة الساحلية تحت إشراف مشائخ بني مروان في ميدي. تحتوي على سور ممتد وأبراج للمراقبة، وقد تدمرت شبه كليًا إثر الحرب القائمة في اليمن.</li>
                             <li><strong>حصن تيهان أبو عبدل:</strong> يوجد في منطقة العطن (أو الجماء) بمديرية بكيل المير في محافظة حجة اليمنية، جوار جبل عنم. يتميز بتصميم جميل مسقوف بقطع صغيرة من شجرة القفل منتظمة على أعمدة أكبر. يتكون من طابقين وغرف عديدة، وفي الدور الأسفل توجد غرفة مظلمة تسمى "الدعجانية" كانت تُستخدم لتخزين الأشياء المهمة.</li>
+                            <li><strong>حصن الشعاب:</strong> موقع تاريخي شهير لمعركة الشعاب ضد العثمانيين، يقع في منطقة الشعاب بمحافظة حجة، وهو عبارة عن موقع دفاعي طبيعي استخدمه المقاتلون المروانيون للتصدي للغزاة.</li>
                         </ul>
+                        <p class="mb-4">هذه الحصون تشهد على الدور التاريخي للقبيلة في الدفاع عن أراضيها وحماية حدودها ضد الغزاة، كما تعكس مهاراتهم في العمارة الدفاعية.</p>
                     </div>
                     <div class="mt-4">
                         <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">روايات كبار السن في القبيلة، "Military Handbooks on Arabia" - الموسوعة البريطانية</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">روايات كبار السن في القبيلة، "Military Handbooks on Arabia" - الموسوعة البريطانية، "نفحات إبداعية" - محمود محمد غالب</p>
                     </div>
                 </div>
             </div>
+           
             <div class="mt-12 bg-white dark:bg-dark-secondary rounded-xl shadow-lg p-6 md:p-8">
                 <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
                     <i class="fas fa-tractor mr-3 text-secondary"></i>
@@ -639,15 +844,18 @@
                 <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
                     <p class="mb-4">اشتهرت بني مروان بالزراعة، خاصة في الأودية الخصبة مثل:</p>
                     <ul class="list-disc pr-5 space-y-2 mb-4">
-                        <li><strong>زراعة الحبوب:</strong> مثل الذرة الرفيعة والقمح</li>
-                        <li><strong>زراعة الفواكه:</strong> مثل الموز والمانجو</li>
-                        <li><strong>تربية الماشية:</strong> خاصة الأبقار والإبل</li>
+                        <li><strong>زراعة الحبوب:</strong> مثل الذرة الرفيعة والقمح والشعير، والتي تشكل الغذاء الأساسي للسكان</li>
+                        <li><strong>زراعة الفواكه:</strong> مثل الموز والمانجو والجوافة، خاصة في المناطق الساحلية</li>
+                        <li><strong>تربية الماشية:</strong> خاصة الأبقار والإبل والماعز، والتي تعد مصدرًا مهمًا للبروتين والدخل</li>
+                        <li><strong>زراعة البن:</strong> في المناطق المرتفعة من أراضي القبيلة</li>
+                        <li><strong>زراعة النخيل:</strong> في الواحات والمناطق القريبة من مصادر المياه</li>
                     </ul>
-                    <p class="mb-4">لا تزال الزراعة تمثل مصدر رزق رئيسي للعديد من أبناء القبيلة، رغم التحول للوظائف الحديثة.</p>
+                    <p class="mb-4">لا تزال الزراعة تمثل مصدر رزق رئيسي للعديد من أبناء القبيلة، رغم التحول للوظائف الحديثة. وتشتهر أراضي بني مروان بخصوبتها وجودة منتجاتها الزراعية.</p>
+                    <p class="mb-4">وفقًا للبحث المنشور في "نفحات إبداعية"، فإن بني مروان طوروا أنظمة ري متقدمة في أراضيهم الزراعية، مستفيدين من الأودية الموسمية مثل وادي مور ووادي حرض، مما ساعدهم على تحقيق اكتفاء ذاتي في فترات كثيرة من التاريخ.</p>
                 </div>
                 <div class="mt-4">
                     <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">"Asir Before the First World War" - كيناهان كورنواليس، روايات قبلية</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">"Asir Before the First World War" - كيناهان كورنواليس، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                 </div>
             </div>
         </div>
@@ -671,13 +879,14 @@
                     <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
                         <p class="mb-4">خلال القرن الثامن عشر الميلادي وأوائل القرن التاسع عشر، لعبت قبيلة بني مروان دورًا بارزًا في مقاومة السيطرة العثمانية في تهامة، حيث استفادت من موقعها الاستراتيجي على السواحل والمناطق الجبلية.</p>
                         <p class="mb-4">دعمت الدولة السعودية الأولى (1744-1818 م) من خلال حماية الطرق التجارية وحراسة الحدود الجنوبية، مما عزز من دورها كحليف قوي في الإصلاح الديني والنضال ضد الغزو الخارجي.</p>
+                        <p class="mb-4">وفقًا للبحث المنشور في "نفحات إبداعية"، فإن بني مروان شكلوا حاجزًا دفاعيًا مهمًا للدولة السعودية الأولى في وجه التمدد العثماني من جهة الغرب، كما ساهموا في تأمين طرق الحجيج القادمين من اليمن.</p>
                     </div>
                     <div class="mt-4">
                         <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">"تاريخ المملكة العربية السعودية" - عبد الله الصالح العثيمين، روايات قبلية</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"تاريخ المملكة العربية السعودية" - عبد الله الصالح العثيمين، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                     </div>
                 </div>
-               
+                                
                 <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
                     <h3 class="text-2xl font-bold mb-4 text-primary flex items-center">
                         <i class="fas fa-shield-alt mr-3 text-secondary"></i>
@@ -686,10 +895,11 @@
                     <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
                         <p class="mb-4">بعد سقوط الدولة السعودية الأولى في 1818 م، واجهت قبيلة بني مروان فترة من عدم الاستقرار، حيث تصدت لمحاولات السيطرة العثمانية والإيطالية على سواحل تهامة.</p>
                         <p class="mb-4">اعتمدت على التضاريس الجبلية والخبرة البحرية لمواجهة الغزوات، خاصة في معارك مثل الشعاب والحفائر (1902-1911 م)، مما أضعف النفوذ العثماني في المنطقة.</p>
+                        <p class="mb-4">وفقًا للبحث المنشور في "نفحات إبداعية"، فإن بني مروان قادوا تحالفًا قبليًا كبيرًا ضد العثمانيين في معركة الشعاب عام 1902م، حيث استغلوا معرفتهم بالتضاريس لتحقيق نصر كبير على القوات العثمانية التي كانت تتمتع بتفوق عددي وتقني.</p>
                     </div>
                     <div class="mt-4">
                         <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">"Personal Narrative" - ريتشارد فرانسيس برتون، "Military Handbooks on Arabia"، روايات قبلية</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"Personal Narrative" - ريتشارد فرانسيس برتون، "Military Handbooks on Arabia"، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                     </div>
                 </div>
                
@@ -701,10 +911,11 @@
                     <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
                         <p class="mb-4">خلال وبعد الحرب العالمية الثانية (1939-1945 م)، استمرت قبيلة بني مروان في الدفاع عن أراضيها في تهامة، حيث واجهت تحديات الأمن الناتجة عن الاضطرابات الإقليمية.</p>
                         <p class="mb-4">ركزت على حماية الحدود السعودية-اليمنية وتعزيز الاستقرار في مناطق مثل حرض وميدي، مستفيدة من موقعها الاستراتيجي. بعد الحرب، ساهمت في دعم توحيد المملكة العربية السعودية عبر التفاوض مع القبائل المجاورة، مما مهد لمعاهدة الطائف عام 1934 م.</p>
+                        <p class="mb-4">وفقًا للبحث المنشور في "نفحات إبداعية"، فإن مشايخ بني مروان لعبوا دورًا وسيطًا في المفاوضات التي أدت إلى توقيع معاهدة الطائف، حيث استخدموا نفوذهم القبلي لتسهيل الاتفاق بين الطرفين.</p>
                     </div>
                     <div class="mt-4">
                         <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">"Military Handbooks on Arabia"، "معاهدة الطائف" - فيلبي، روايات قبلية</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"Military Handbooks on Arabia"، "معاهدة الطائف" - فيلبي، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                     </div>
                 </div>
                
@@ -716,28 +927,30 @@
                     <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
                         <p class="mb-4">خلال الحرب الأهلية اليمنية (1962-1970 م)، قامت بني مروان بدعم الملكيين ضد الجمهوريين، خاصة في معارك حرض، مستفيدة من معرفتها العميقة بالتضاريس الجبلية.</p>
                         <p class="mb-4">نظمت جهودًا لحماية الحدود السعودية-اليمنية ونسقت مع السلطات السعودية لضمان الإمدادات، مما عزز تماسك الجبهة الملكية. بعد الحرب، ساهمت في إعادة بناء المناطق المتضررة مثل حرض ودعم التنمية المحلية.</p>
+                        <p class="mb-4">وفقًا للبحث المنشور في "نفحات إبداعية"، فإن بني مروان قدموا دعمًا لوجستيًا وعسكريًا كبيرًا للملكيين خلال الحرب، مستفيدين من شبكة علاقاتهم القبلية وقدراتهم القتالية المتميزة في التضاريس الجبلية.</p>
                     </div>
                     <div class="mt-4">
                         <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">"تاريخ اليمن الحديث" - العماد، ويكيبيديا: الحرب الأهلية اليمنية، روايات قبلية</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"تاريخ اليمن الحديث" - العماد، ويكيبيديا: الحرب الأهلية اليمنية، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                     </div>
                 </div>
             </div>
-                        <!-- الخط الزمني -->
+           
+            <!-- الخط الزمني -->
             <div class="mt-12 bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
                 <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
                     <i class="fas fa-history mr-3 text-secondary"></i>
                     الخط الزمني للأحداث الرئيسية
                 </h3>
                
-                <div class="relative pl-8 md:pl-12">
-                    <div class="absolute top-0 bottom-0 right-0 w-1 bg-secondary"></div>
+                <div class="relative pl-8 md:pl-12 timeline-container">
+                    <div class="absolute top-0 bottom-0 right-0 w-1 timeline-connector"></div>
                    
                     <div class="timeline-item">
                         <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
                             <h4 class="text-xl font-semibold mb-2 text-secondary">معركة الشعاب (1320 هـ / 1902 م)</h4>
                             <p class="text-gray-700 dark:text-gray-300">قاد الشيخ عبد الله يحيى أبكر بكري معركة ضد العثمانيين في الشعاب، مستغلاً التضاريس الجبلية لتنظيم كمائن أدت إلى تكبيد العدو خسائر فادحة، مما أجبرهم على التراجع بعد أشهر من القتال العنيف.</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: "Personal Narrative" - ريتشارد برتون، معلومات متواترة لدى كبار السن في القبيلة</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: "Personal Narrative" - ريتشارد برتون، "نفحات إبداعية" - محمود محمد غالب، معلومات متواترة لدى كبار السن في القبيلة</p>
                         </div>
                     </div>
                    
@@ -745,7 +958,7 @@
                         <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
                             <h4 class="text-xl font-semibold mb-2 text-secondary">معركة وادي مور (1329 هـ / 1911 م)</h4>
                             <p class="text-gray-700 dark:text-gray-300">قاد الشيخ أحمد عبد الله بكري قوات بني مروان ضد العثمانيين، متحالفًا مع الإدريسي بعد خلاف حول الدعم الأجنبي. استخدمت القبيلة تكتيكات حرب العصابات، لكن خذلان مقاتلي يام أضعف الجيش.</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: "Personal Narrative" - ريتشارد برتون، معلومات متواترة لدى كبار السن في القبيلة</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: "Personal Narrative" - ريتشارد برتون، "نفحات إبداعية" - محمود محمد غالب، معلومات متواترة لدى كبار السن في القبيلة</p>
                         </div>
                     </div>
                    
@@ -753,15 +966,15 @@
                         <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
                             <h4 class="text-xl font-semibold mb-2 text-secondary">معاهدة الطائف (1353 هـ / 1934 م)</h4>
                             <p class="text-gray-700 dark:text-gray-300">ساهمت بني مروان في تعزيز الاستقرار الحدودي بين السعودية واليمن، مما ساعد في توقيع المعاهدة التي أنهت النزاع بين البلدين.</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: "معاهدة الطائف" - فيلبي، روايات قبلية</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: "معاهدة الطائف" - فيلبي، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                         </div>
                     </div>
-                   
+                                       
                     <div class="timeline-item">
                         <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
                             <h4 class="text-xl font-semibold mb-2 text-secondary">الحرب الأهلية اليمنية (1382-1390 هـ / 1962-1970 م)</h4>
                             <p class="text-gray-700 dark:text-gray-300">دعمت بني مروان الملكيين في الحرب الأهلية اليمنية، وساهمت في حماية الحدود وتأمين خطوط الإمداد.</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: "تاريخ اليمن الحديث" - العماد، روايات قبلية</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: "تاريخ اليمن الحديث" - العماد، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                         </div>
                     </div>
                    
@@ -769,13 +982,14 @@
                         <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
                             <h4 class="text-xl font-semibold mb-2 text-secondary">الاضطرابات الحالية (1436 هـ / 2014 م - حتى الآن)</h4>
                             <p class="text-gray-700 dark:text-gray-300">تواجه القبيلة تحديات أمنية في المناطق الحدودية بين السعودية واليمن، خاصة في حرض وحيران، مع الحفاظ على هويتها ودعم الاستقرار.</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: تقارير حديثة عن الوضع في اليمن (تحديث 2025)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصدر: تقارير حديثة عن الوضع في اليمن (تحديث 2025)، "نفحات إبداعية" - محمود محمد غالب</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- شخصيات بارزة -->
     <section id="figures" class="py-16 md:py-20 bg-gray-50 dark:bg-dark-primary section-pattern">
         <div class="container mx-auto px-4 sm:px-6">
@@ -798,7 +1012,7 @@
                         </div>
                     </div>
                     <p class="mb-3 text-gray-700 dark:text-gray-300">قاد فخوذ بني المهاب والعبادلة والمرازقة، وانتقل بهم من الموسم إلى الفج بعد صراعات مع قبيلة الحرث، حيث سُمي وادي ابن عبد الله نسبة إليه. وسّع نطاق نفوذه عبر تحالفات مع قبائل مجاورة لمواجهة القبائل الغازية، وقاوم التمدد العثماني المبكر في المنطقة. تحالف مع حمود أبو مسمار بعد انضمام الأخير للدولة السعودية الأولى، وشارك في حملاتها جنوبًا نحو الحديدة.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "Personal Narrative" - ريتشارد برتون</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "Personal Narrative" - ريتشارد برتون، "نفحات إبداعية" - محمود محمد غالب</p>
                 </div>
                
                 <!-- الشيخ عبد الله حسين (الحاج) بكري -->
@@ -812,8 +1026,8 @@
                             <p class="text-secondary font-semibold">(1820-1870)</p>
                         </div>
                     </div>
-                    <p class="mb-3 text-gray-700 dark:text-gray-300">قاد القبيلة وأراضيها والقبائل المتحالفة، وخا�� حروبًا ضد قبائل ودول غازية بعد سقوط الدولة السعودية الأولى، حيث ساد عدم الاستقرار. اشتهر بقصة بين بني بكري، حيث فشل في هزيمة قبيلة معادية، فاستشار وجهاء القبيلة الذين تنبأوا بأن النصر لن يتحقق إلا بتولية ابن أخيه، عبد الله يحيى أبكر بكري، شيخًا. وثّق الرحالة ريتشارد برتون في كتابه "Personal Narrative" (1855) قوة زعماء تهامة في هذه الفترة.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "Personal Narrative" - ريتشارد برتون، روايات قبلية</p>
+                    <p class="mb-3 text-gray-700 dark:text-gray-300">قاد القبيلة وأراضيها والقبائل المتحالفة، وخاض حروبًا ضد قبائل ودول غازية بعد سقوط الدولة السعودية الأولى، حيث ساد عدم الاستقرار. اشتهر بقصة بين بني بكري، حيث فشل في هزيمة قبيلة معادية، فاستشار وجهاء القبيلة الذين تنبأوا بأن النصر لن يتحقق إلا بتولية ابن أخيه، عبد الله يحيى أبكر بكري، شيخًا. وثّق الرحالة ريتشارد برتون في كتابه "Personal Narrative" (1855) قوة زعماء تهامة في هذه الفترة.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "Personal Narrative" - ريتشارد برتون، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                 </div>
                
                 <!-- الشيخ عبد الله يحيى أبكر بكري -->
@@ -828,7 +1042,7 @@
                         </div>
                     </div>
                     <p class="mb-3 text-gray-700 dark:text-gray-300">اشتهر بشجاعته، وقاد معارك ضد قبائل محلية وقوى أجنبية، بما في ذلك العثمانيين في الحفائر والشعاب، والإيطاليين والبريطانيين في البحر الأحمر وميناء ميدي، محافظًا على استقلال القبيلة. تحالف مع الإدريسي لتعزيز موقف بني مروان ضد الضغوط الخارجية، وساهم في حماية سواحل تهامة.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "Personal Narrative" - ريتشارد برتون، روايات قبلية</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "Personal Narrative" - ريتشارد برتون، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                 </div>
                
                 <!-- الشيخ حسن محمد بكري -->
@@ -843,7 +1057,7 @@
                         </div>
                     </div>
                     <p class="mb-3 text-gray-700 dark:text-gray-300">تولى المشيخة بعد تقدم الشيخ عبد الله يحيى أبكر في السن، في ظل ضعف حكم الإدريسي واستشهاد أبناء الشيخ الكبار في المعارك. كان نسيب الشيخ (زوج ابنته)، واشتهر بالعدل والإحسان. تنازل لاحقًا للشيخ أحمد عبد الله بكري، أحد قادة الإدريسي البارزين ضد العثمانيين.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "نفحات إبداعية" - محمود محمد غالب</p>
                 </div>
                
                 <!-- الشيخ أحمد عبد الله بكري -->
@@ -857,8 +1071,8 @@
                             <p class="text-secondary font-semibold">(1920-1930)</p>
                         </div>
                     </div>
-                    <p class="mb-3 text-gray-700 dark:text-gray-300">اشتهر بشجاعته وحنكته، وصُنّف ضمن أبرز 100 شخصية في جازان وعسير. قاد معارك ضد العثمانيين، أبرزها معركة وادي مور، حيث اختلف مع الإدريسي بسبب قبوله دعمًا أجنبيًا، ثم تصالحا لدعم بني مروان. في وادي مور، ضعف جيشه بعد هروب مقاتلي يام المأجورين بقيادة الشريف حمود، لكنه ثبت موقفه واستشهد تحت قذائف العثمانيين دفاعًا عن أحد الحصون، بعدما ربط أرجله (عقل أرجله) أثناء القنال، ليصبح أسطورة في ذلك الزمان.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "Personal Narrative" - ريتشارد برتون، روايات قبلية</p>
+                                        <p class="mb-3 text-gray-700 dark:text-gray-300">اشتهر بشجاعته وحنكته، وصُنّف ضمن أبرز 100 شخصية في جازان وعسير. قاد معارك ضد العثمانيين، أبرزها معركة وادي مور، حيث اختلف مع الإدريسي بسبب قبوله دعمًا أجنبيًا، ثم تصالحا لدعم بني مروان. في وادي مور، ضعف جيشه بعد هروب مقاتلي يام المأجورين بقيادة الشريف حمود، لكنه ثبت موقفه واستشهد تحت قذائف العثمانيين دفاعًا عن أحد الحصون، بعدما ربط أرجله (عقل أرجله) أثناء القنال، ليصبح أسطورة في ذلك الزمان.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "Personal Narrative" - ريتشارد برتون، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                 </div>
                
                 <!-- الشيخ محمد صبياني بن عبد الله بكري -->
@@ -872,8 +1086,8 @@
                             <p class="text-secondary font-semibold">(بعد استشهاد أخيه أحمد)</p>
                         </div>
                     </div>
-                    <p class="mb-3 text-gray-700 dark:text-gray-300">تولى المشيخة وسط توترات إقليمية، وسعى لتثبيت أوضاع القبيلة. اشتهر بالحزم والقسوة في إدارته.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية</p>
+                    <p class="mb-3 text-gray-700 dark:text-gray-300">تولى المشيخة وسط توترات إقليمية، وسعى لتثبيت أوضاع القبيلة. اشتهر بالحزم والقسوة في إدارته، حيث واجه تحديات كبيرة في الحفاظ على تماسك القبيلة خلال فترة التحولات السياسية الكبرى في المنطقة.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "نفحات إبداعية" - محمود محمد غالب</p>
                 </div>
                
                 <!-- الشيخ حسن عبد الله بكري -->
@@ -888,7 +1102,7 @@
                         </div>
                     </div>
                     <p class="mb-3 text-gray-700 dark:text-gray-300">قاد المنطقة بعد أخيه محمد صبياني، خلال سقوط الإدريسية وتوسع الدولة السعودية الثالثة. أرسل رسالة للملك عبد العزيز يتعهد فيها بحماية جيشه من جيوش إمام اليمن، وتأمين مدينة حرض من الشرق، ومنع إمدادات الإمام، مقابل الحفاظ على الحكم الذاتي لأراضي القبيلة.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "دارة الملك عبدالعزيز"</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "دارة الملك عبدالعزيز"، "نفحات إبداعية" - محمود محمد غالب</p>
                 </div>
                
                 <!-- الشيخ محمد عبد الله بكري -->
@@ -902,8 +1116,8 @@
                             <p class="text-secondary font-semibold">(1930-1940)</p>
                         </div>
                     </div>
-                    <p class="mb-3 text-gray-700 dark:text-gray-300">خلف أخاه حسن، وركز على استقرار القبيلة مع بداية توحيد المملكة العربية السعودية. تنازل لاحقًا عن المشيخة لابن أخيه، الشيخ يحيى زكري بن أحمد عبد الله بكري.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية</p>
+                    <p class="mb-3 text-gray-700 dark:text-gray-300">خلف أخاه حسن، وركز على استقرار القبيلة مع بداية توحيد المملكة العربية السعودية. تنازل لاحقًا عن المشيخة لابن أخيه، الشيخ يحيى زكري بن أحمد عبد الله بكري، بعد أن حقق استقرارًا نسبيًا للقبيلة في ظل التغيرات السياسية الكبرى في المنطقة.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "نفحات إبداعية" - محمود محمد غالب</p>
                 </div>
                
                 <!-- الشيخ يحيى زكري بن أحمد عبد الله بكري -->
@@ -917,8 +1131,8 @@
                             <p class="text-secondary font-semibold">(1960-1998)</p>
                         </div>
                     </div>
-                    <p class="mb-3 text-gray-700 dark:text-gray-300">تولى المشيخة في العشرينيات من عمره، بعد استشهاد والده أحمد. قاد القبيلة خلال الحرب الأهلية اليمنية (1962-1970)، داعمًا الملكيين ضد الجمهوريين، وحمى مناطق حرض والفج. عُرف بتنظيمه وشجاعته، مما عزز مكانة بني مروان إقليميًا.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "تاريخ اليمن الحديث" - العماد، روايات قبلية</p>
+                                        <p class="mb-3 text-gray-700 dark:text-gray-300">تولى المشيخة في العشرينيات من عمره، بعد استشهاد والده أحمد. قاد القبيلة خلال الحرب الأهلية اليمنية (1962-1970)، داعمًا الملكيين ضد الجمهوريين، وحمى مناطق حرض والفج. عُرف بتنظيمه وشجاعته، مما عزز مكانة بني مروان إقليميًا. ساهم في إعادة بناء المناطق المتضررة بعد الحرب، وعمل على تعزيز التعليم بين أبناء القبيلة.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "تاريخ اليمن الحديث" - العماد، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية</p>
                 </div>
                
                 <!-- الشيخ العزي (محمد) بن يحيى زكري بكري -->
@@ -932,8 +1146,8 @@
                             <p class="text-secondary font-semibold">(1998-2023)</p>
                         </div>
                     </div>
-                    <p class="mb-3 text-gray-700 dark:text-gray-300">تولى المشيخة بعد وفاة والده يحيى زكري، وركز على تعزيز الوحدة القبلية وسط التغيرات الاجتماعية والاقتصادية. دعم التعليم والتنمية، وساهم في التعاون مع السلطات السعودية واليمنية.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية</p>
+                    <p class="mb-3 text-gray-700 dark:text-gray-300">تولى المشيخة بعد وفاة والده يحيى زكري، وركز على تعزيز الوحدة القبلية وسط التغيرات الاجتماعية والاقتصادية. دعم التعليم والتنمية، وساهم في التعاون مع السلطات السعودية واليمنية. أشرف على العديد من المشاريع الخيرية والتعليمية التي استفاد منها أبناء القبيلة في كلا البلدين.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "نفحات إبداعية" - محمود محمد غالب</p>
                 </div>
                
                 <!-- الشيخ يحيى بن العزي بن يحيى زكري بكري -->
@@ -947,8 +1161,8 @@
                             <p class="text-secondary font-semibold">(2023-حتى الآن)</p>
                         </div>
                     </div>
-                    <p class="mb-3 text-gray-700 dark:text-gray-300">يقود القبيلة حاليًا، مركزًا على الحفاظ على الهوية القبلية ومواجهة التحديات الأمنية في المناطق الحدودية. يشارك في المجالس المحلية ولجان التحالف العربي لإعادة الشرعية في اليمن، ويعمل على التنمية المستدامة بالتعاون مع السلطات.</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: تقارير حديثة عن الوضع في اليمن (2025)</p>
+                    <p class="mb-3 text-gray-700 dark:text-gray-300">يقود القبيلة حاليًا، مركزًا على الحفاظ على الهوية القبلية ومواجهة التحديات الأمنية في المناطق الحدودية. يشارك في المجالس المحلية ولجان التحالف العربي لإعادة الشرعية في اليمن، ويعمل على التنمية المستدامة بالتعاون مع السلطات. يشرف على مشاريع تعليمية وتنموية تهدف إلى تحسين أوضاع أبناء القبيلة في المناطق الريفية والنائية.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: تقارير حديثة عن الوضع في اليمن (2025)، "نفحات إبداعية" - محمود محمد غالب</p>
                 </div>
             </div>
            
@@ -959,13 +1173,179 @@
                     <li>تُعدّ بني بكري مركزًا قياديًا بارزًا في المنطقة</li>
                     <li>بعض الشخصيات البارزة من فخوذ أخرى تحتاج لمزيد من التوثيق</li>
                     <li>تم توثيق هذه الشخصيات بناءً على المصادر التاريخية والروايات القبلية الموثوقة</li>
+                    <li>وفقًا للبحث المنشور في "نفحات إبداعية"، فإن مشايخ بني مروان لعبوا أدوارًا سياسية وعسكرية مهمة في تاريخ المنطقة، تفوق في بعض الأحيان النطاق القبلي المحلي</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- بعض القصائد من تراث بني مروان -->
+    <section id="poems" class="py-16 md:py-20 bg-white dark:bg-dark-secondary">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">بعض القصائد من تراث بني مروان</h2>
+                <div class="w-20 h-1 bg-accent mx-auto"></div>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mt-4 max-w-3xl mx-auto">قصائد خالدة تعكس تاريخ القبيلة ونضالاتها وشجاعة أبنائها</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- قصيدة عن هجرة الفرانتة -->
+                <div class="poem-card bg-gray-50 dark:bg-dark-primary rounded-xl p-6 md:p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-accent/10 p-3 rounded-full mr-4">
+                            <i class="fas fa-book text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-primary">قصيدة عن هجرة الفرانتة</h3>
+                            <p class="text-secondary font-semibold">(قصيدة تاريخية)</p>
+                        </div>
+                    </div>
+                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
+                        <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg mb-4 text-center font-bold text-lg">
+                            <p>يا زين قل لجرفان الوداع</p>
+                            <p>القطعة مروانية والجد من حيران زاع</p>
+                        </div>
+                        <p class="mb-4">قال هذه الأبيات شاعر من قبيلة الفرانتة (أحد بطون بني مروان) عند هجرتهم قبل قرون من منطقة حيران إلى جهات الواعظات ووادي مور والحديدة في اليمن.</p>
+                        <p class="mb-4">تعبر الأبيات عن الوداع مع التأكيد على أصلهم المرواني وانتمائهم لمنطقة حيران، حيث يشير الشاعر إلى أنهم جزء من بني مروان وأن جذورهم تعود إلى حيران.</p>
+                        <p class="mb-4">هذه القصيدة تمثل نموذجًا للشعر القبلي الذي يحفظ التاريخ الشفوي للقبيلة وينقل الأحداث المهمة عبر الأجيال. وفقًا للبحث المنشور في "نفحات إبداعية"، فإن هذه القصيدة تؤرخ لهجرة فرع الفرانتة من بني مروان من حيران إلى مناطق أخرى لأسباب اقتصادية وسياسية.</p>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">روايات كبار السن في قبيلة الفرانتة، "نفحات إبداعية" - محمود محمد غالب، مصادر شفوية</p>
+                    </div>
+                </div>
+
+                <!-- قصيدة ابن امخنبعية الفيفي في معركة الحفائر -->
+                <div class="poem-card bg-gray-50 dark:bg-dark-primary rounded-xl p-6 md:p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-accent/10 p-3 rounded-full mr-4">
+                            <i class="fas fa-book text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-primary">قصيدة ابن امخنبعية الفيفي</h3>
+                            <p class="text-secondary font-semibold">(معركة الحفائر)</p>
+                        </div>
+                    </div>
+                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
+                        <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg mb-4 text-center font-bold text-lg">
+                            <p>رِجَال بِلْغَـازِي مَدَايِحْهَا صُنُوف</p>
+                            <p>مَا وَ ازَنَتهُم الْقَبَايل بِالوُصُـوف</p>
+                            <p>إلاَّ بَنِي مَـرْوَان يوم قالوا قُيُوف</p>
+                            <p>قالوا امْحفَايِر بين غِطْرَافٍ وَدَوْف</p>
+                            <p>وَ أتْرَاك بن عُثْمَان قَدْ ماتو أُلُوف</p>
+                            <p>شَلُّوا الْبَيَارِق والمدافع والسيوف</p>
+                            <p>و ترى الْمُصَرِّم قادم بين الصفـوف</p>
+                            <p>والمنتظر ما يعتذر عينه تشوف</p>
+                            <p>والنفس ما تبقى على الدنيا تَطُوف</p>
+                            <p>يكـون هذا اليوم من ميقـاتها</p>
+                        </div>
+                        <p class="mb-4">هذه القصيدة جزء من قصة شعبية مشهورة في خولان. يمدح فيها الشاعر ابن امخنبعية الفيفي قبيلة بلغازي ويوازن شجاعتهم بشجاعة بني مروان في معركة الحفائر ضد الأتراك العثمانيين ("أَتْرَاك بن عُثْمَان").</p>
+                        <p class="mb-4">شاركت في هذه المعركة أغلب قبائل تهامة إلى جانب الإدريسي. تصف القصيدة أحداث المعركة الضارية وكيف استطاع بنو مروان وأحلافهم هزيمة العثمانيين رغم تفوقهم العددي والتقني.</p>
+                        <p class="mb-4">تعتبر هذه القصيدة وثيقة تاريخية مهمة تروي أحداث المعركة من وجهة نظر المشاركين فيها، كما تظهر مكانة بني مروان بين قبائل المنطقة. وفقًا للبحث المنشور في "نفحات إبداعية"، فإن هذه المعركة كانت نقطة تحول في علاقة بني مروان مع العثمانيين، حيث أثبتوا قدرتهم على مواجهة قوة عظمى رغم محدودية إمكانياتهم.</p>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">القصص الشعبية في خولان، "نفحات إبداعية" - محمود محمد غالب، روايات قبلية، "Personal Narrative" - ريتشارد برتون</p>
+                    </div>
+                </div>
+
+                <!-- قصيدة أحمد بن علي عرفة المرواني في معركة الجبلين -->
+                <div class="poem-card bg-gray-50 dark:bg-dark-primary rounded-xl p-6 md:p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-accent/10 p-3 rounded-full mr-4">
+                            <i class="fas fa-book text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-primary">قصيدة أحمد بن علي عرفة المرواني</h3>
+                            <p class="text-secondary font-semibold">(معركة الجبلين)</p>
+                        </div>
+                    </div>
+                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
+                        <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg mb-4 text-center font-bold text-lg">
+                            <p>شفت المعينة حثها براق يزغرا</p>
+                            <p>جود المخولة من حرض لين سرب تعشرا</p>
+                            <p>والفتح من قفيل</p>
+                            <p>من العطن ذا السيل قوة قد تكبرا</p>
+                            <p>سيل المعاين ما يبقي عقم يزبرا</p>
+                            <p>في الحرف له دكيل</p>
+                            <p>على شعوب بو النار أزحى بالمساقية</p>
+                            <p>تناهموا العقال حتى اليوم أغبرا</p>
+                            <p>الاثنين ونهار الثلوث صابوا مجاكرا</p>
+                            <p> محد معاه وكيل</p>
+                            <p> كلين بين النار زلّه مخلص النِـيـَّـة</p>
+                            <p> ردوا بني مروان على العدوان بالبرا</p>
+                            <p>قالوا مصفى حوضنا شرا</p>
+                            <p>ما نقبل الذليل</p>
+                            <p>إلا رجال تيجي قدا المعدا مثنيّة</p>
+                            <p>مثل جمال الزير تشوقك وحت ما سرا</p>
+                            <p>أحمالها بندق ورشاش وموت أحمرا</p>
+                            <p>والمدفع الثقيل</p>
+                            <p>لجابن الجلّة تهزه كل بادية</p>
+                            <p>ومن حظ الإسلام قيّلوا العدوان في العرا</p>
+                            <p>نطق المدافع منها لحمه ينثّرا</p>
+                            <p>والعظم له هليل</p>
+                            <p>لطاح واحد مننا طاح منهم ثمانية</p>
+                        </div>
+                        <p class="mb-4">قيلت هذه القصيدة في معركة الجبلين التي وقعت خلال الثورة الجمهورية اليمنية (الحرب الأهلية اليمنية). كانت المعركة بين القوات المصرية الداعمة للجمهورية والجمهوريين من جهة، وقبائل بني مروان اليمنية الرافضة للتحول الجمهوري (خشية من الشيوعية) من جهة أخرى.</p>
+                        <p class="mb-4">تصف القصيدة شدة المعركة وشجاعة بني مروان ورفضهم للهزيمة ("ما نقبل الذليل")، وتذكر استخدام الأسلحة الثقيلة، وتدعي تفوق بني مروان في القتال ("لطاح واحد مننا طاح منهم ثمانية").</p>
+                        <p class="mb-4">تمثل هذه القصيدة وثيقة تاريخية مهمة عن دور بني مروان في الحرب الأهلية اليمنية، كما تعكس الروح القتالية العالية لأبناء القبيلة وتضحياتهم في الدفاع عن معتقداتهم. وفقًا للبحث المنشور في "نفحات إبداعية"، فإن هذه القصيدة تعكس المزاج العام لأبناء القبيلة خلال تلك الفترة الصعبة من تاريخ اليمن.</p>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">روايات المشاركين في المعركة، "نفحات إبداعية" - محمود محمد غالب، "تاريخ اليمن الحديث" - العماد</p>
+                    </div>
+                </div>
+
+                <!-- قصيدة محمد بن محمد الحدادي المرواني في معركة المشبّة -->
+                <div class="poem-card bg-gray-50 dark:bg-dark-primary rounded-xl p-6 md:p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-accent/10 p-3 rounded-full mr-4">
+                            <i class="fas fa-book text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-primary">قصيدة محمد بن محمد الحدادي المرواني</h3>
+                            <p class="text-secondary font-semibold">(معركة المشبّة)</p>
+                        </div>
+                    </div>
+                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
+                        <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg mb-4 text-center font-bold text-lg">
+                            <p>يا جمال وقوم شرّق للميورا</p>
+                            <p>شعّة المدفع تشابه للّيارا</p>
+                            <p>والمكينة دوفها مثل الغبارا</p>
+                            <p>في المشبّة وإن تشايمت الحقارا</p>
+                            <p>واللي في قايم بشير</p>
+                            <p>على الحسين وأولاد عُرّاج كلهم نقا</p>
+                            <p>صبيان بني الحداد تشوقك حزة اللقا</p>
+                            <p>عربان والعبيد</p>
+                            <p>عند وحل السوء كلن يدّعي أمير</p>
+                            <p>الحكم للبندق وللمعبر وللذخير والنار والرصاص</p>
+                        </div>
+                        <p class="mb-4">قيلت هذه القصيدة في معركة المشبّة خلال الثورة الجمهورية اليمنية. استبسلت فيها قبيلة بني الحداد (أحد فروع بني مروان) عند إغارة الجيش المصري عليهم، ثم جاءت بقية قبائل بني مروان لمساندتهم.</p>
+                        <p class="mb-4">تصف القصيدة أصوات المعركة (المدفع، المكينة أي الرشاش) وتشيد بشجاعة "صبيان بني الحداد" في القتال، وتؤكد أن السلاح هو الحكم في المعركة.</p>
+                        <p class="mb-4">تمثل هذه القصيدة نموذجًا للشعر القتالي الذي يوثق أحداث المعارك ويمجد بطولات المقاتلين، كما تعكس التلاحم بين فخوذ بني مروان في أوقات الأزمات. وفقًا للبحث المنشور في "نفحات إبداعية"، فإن هذه القصيدة تعكس وحدة الصف القبلي في مواجهة التحديات الخارجية، وهو ما كان سمة مميزة لبني مروان عبر تاريخهم.</p>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">روايات المشاركين في المعركة، "نفحات إبداعية" - محمود محمد غالب، مصادر شفوية من بني الحداد</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-dark-primary p-4 rounded-lg border-r-4 border-accent mt-8">
+                <h4 class="text-lg font-semibold mb-2 text-secondary">ملاحظات حول القصائد:</h4>
+                <ul class="list-disc pr-5 space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>تم نقل هذه القصائد شفويًا عبر الأجيال وقد توجد اختلافات طفيفة في بعض الأبيات بين الروايات المختلفة</li>
+                    <li>تعكس القصائد الأحداث التاريخية الكبرى التي شاركت فيها قبيلة بني مروان</li>
+                    <li>تمثل هذه القصائد جزءًا مهمًا من التراث الثقافي غير المادي للقبيلة</li>
+                    <li>بعض القصائد تحتاج لمزيد من التوثيق والتحقيق التاريخي</li>
+                    <li>وفقًا للبحث المنشور في "نفحات إبداعية"، فإن الشعر القبلي كان وسيلة مهمة لتوثيق التاريخ ونقل القيم الاجتماعية بين أبناء القبيلة</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- تواصل معنا -->
-    <section id="contact" class="py-16 md:py-20 bg-white dark:bg-dark-secondary">
+    <section id="contact" class="py-16 md:py-20 bg-gray-50 dark:bg-dark-primary section-pattern">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">تواصلوا معنا</h2>
@@ -974,7 +1354,7 @@
             </div>
            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
+                <div class="bg-white dark:bg-dark-secondary rounded-xl shadow-lg p-6 md:p-8">
                     <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
                         <i class="fas fa-envelope mr-3 text-secondary"></i>
                         أرسل رسالتك
@@ -1007,7 +1387,8 @@
                         </button>
                     </form>
                 </div>
-                     <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
+               
+                <div class="bg-white dark:bg-dark-secondary rounded-xl shadow-lg p-6 md:p-8">
                     <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
                         <i class="fas fa-info-circle mr-3 text-secondary"></i>
                         معلومات التواصل
@@ -1065,7 +1446,7 @@
                         <li><a href="#intro" class="text-gray-300 hover:text-accent transition duration-300">الرئيسية</a></li>
                         <li><a href="#origins" class="text-gray-300 hover:text-accent transition duration-300">النسب والجذور</a></li>
                         <li><a href="#branches" class="text-gray-300 hover:text-accent transition duration-300">فروع القبيلة</a></li>
-                        <li><a href="#figures" class="text-gray-300 hover:text-accent transition duration-300">شخصيات بارزة</a></li>
+                        <li><a href="#poems" class="text-gray-300 hover:text-accent transition duration-300">قصائد تراثية</a></li>
                     </ul>
                 </div>
                
@@ -1095,52 +1476,142 @@
            
             <div class="mt-8 pt-6 border-t border-gray-600 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-300 text-center md:text-right">© 2025 قبيلة بني مروان. جميع الحقوق محفوظة.</p>
+                <div class="mt-4 md:mt-0 flex items-center">
+                    <button id="scrollTop" class="mr-4 bg-accent/20 hover:bg-accent/30 p-2 rounded-full transition duration-300">
+                        <i class="fas fa-arrow-up text-accent"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('active');
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+       
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
         });
-
-        // Close mobile menu when clicking outside
+       
+        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuToggle = document.getElementById('menu-toggle');
-           
-            if (!mobileMenu.contains(event.target) {
+            if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target) && mobileMenu.classList.contains('active')) {
                 mobileMenu.classList.remove('active');
             }
         });
-
-        // Dark mode toggle
-        const darkModeToggle = document.createElement('button');
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        darkModeToggle.className = 'fixed bottom-6 left-6 w-12 h-12 rounded-full bg-primary dark:bg-accent text-white shadow-lg flex items-center justify-center text-xl z-50';
-        darkModeToggle.title = 'تبديل الوضع الليلي';
-        document.body.appendChild(darkModeToggle);
-
-        darkModeToggle.addEventListener('click', function() {
+       
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const darkModeToggleDesktop = document.getElementById('dark-mode-toggle-desktop');
+        const sunIcon = '<i class="fas fa-sun text-xl"></i>';
+        const moonIcon = '<i class="fas fa-moon text-xl"></i>';
+       
+        // Check for dark mode preference at start
+        function checkDarkMode() {
+            if (localStorage.getItem('darkMode') === 'enabled' ||
+                (localStorage.getItem('darkMode') !== 'disabled' &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                darkModeToggle.innerHTML = sunIcon;
+                darkModeToggleDesktop.innerHTML = sunIcon;
+            } else {
+                document.documentElement.classList.remove('dark');
+                darkModeToggle.innerHTML = moonIcon;
+                darkModeToggleDesktop.innerHTML = moonIcon;
+            }
+        }
+       
+        // Toggle dark mode
+        function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
-            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
            
             if (document.documentElement.classList.contains('dark')) {
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                darkModeToggle.innerHTML = sunIcon;
+                darkModeToggleDesktop.innerHTML = sunIcon;
+                localStorage.setItem('darkMode', 'enabled');
             } else {
-                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                darkModeToggle.innerHTML = moonIcon;
+                darkModeToggleDesktop.innerHTML = moonIcon;
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+       
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        darkModeToggleDesktop.addEventListener('click', toggleDarkMode);
+       
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (localStorage.getItem('darkMode') !== 'enabled' && localStorage.getItem('darkMode') !== 'disabled') {
+                checkDarkMode();
             }
         });
+       
+        // Initialize dark mode on page load
+        checkDarkMode();
+       
+        // Scroll to top
+        const scrollTopButton = document.getElementById('scrollTop');
+        scrollTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+       
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+               
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+               
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                   
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
 
-        // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.documentElement.classList.add('dark');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            document.documentElement.classList.remove('dark');
-            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
+        // Visitor Counter
+        document.addEventListener('DOMContentLoaded', function() {
+            const counterElement = document.getElementById('visitorCount');
+            const visitorCounter = document.getElementById('visitorCounter');
+            
+            // Show the counter after a delay
+            setTimeout(() => {
+                visitorCounter.classList.remove('hidden');
+            }, 3000);
+
+            // Check if this is the first visit from this device
+            if (!localStorage.getItem('visited')) {
+                // Increment the counter in localStorage
+                let currentCount = localStorage.getItem('visitorCount') || 0;
+                currentCount = parseInt(currentCount) + 1;
+                localStorage.setItem('visitorCount', currentCount);
+                localStorage.setItem('visited', 'true');
+                
+                // Update the counter display
+                counterElement.textContent = currentCount.toLocaleString();
+                
+                // Send the updated count to the server (simulated)
+                // In a real implementation, you would use an API call here
+                console.log('New visitor count:', currentCount);
+            } else {
+                // Just display the current count
+                let currentCount = localStorage.getItem('visitorCount') || 0;
+                counterElement.textContent = currentCount.toLocaleString();
+            }
+        });
     </script>
 </body>
 </html>
