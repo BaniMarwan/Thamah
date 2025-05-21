@@ -1,1102 +1,807 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="QoinMZSsPx9E_mXxWzPE_izH-Z2Wr-LUrHTe6xLp5W8" />
-    <title>قبيلة بني مروان - النسب والتاريخ</title>
-    <meta name="description" content="الموقع الرسمي لقبيلة بني مروان التهامية - تاريخ عريق وإرث حضاري يمتد عبر العصور">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Google Fonts - Amiri -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                fontFamily: {
-                    'arabic': ['Amiri', 'serif'],
-                },
-                extend: {
-                    colors: {
-                        primary: {
-                            DEFAULT: '#3A4A5F',
-                            dark: '#2A3646'
-                        },
-                        secondary: {
-                            DEFAULT: '#805D3D',
-                            dark: '#5C432C'
-                        },
-                        accent: {
-                            DEFAULT: '#D4A017',
-                            dark: '#B58812'
-                        },
-                        dark: {
-                            primary: '#1E293B',
-                            secondary: '#0F172A'
-                        }
-                    },
-                    backgroundImage: {
-                        'hero-pattern': "url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimZIAUeTU_MN0yMv5Sg3XJdwgfBWXX24A8DD6yKQZSG9AFiZSnj5u_8d3FNDCYBe-O8nG_cErsg3AwPYtXAg8kK7Z0boWAAVSKzq6ygadOZqWmEoAtnJGz-Rt9J_gSz-UUfJ3pzw157XdY/s320/%25D8%25AD%25D8%25B5%25D9%2586+%25D8%25A7%25D8%25A8%25D9%2586+%25D8%25A8%25D9%2583%25D8%25B1%25D9%258A.jpg')",
-                        'texture-light': "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233A4A5F' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
-                        'texture-dark': "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A017' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 1s ease-in-out',
-                        'bounce-slow': 'bounce 2s infinite'
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <title>نظام مراقبة الآبار الذكي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        :root {
+            --primary-color: #2f5496;
+            --secondary-color: #e6eef7;
+            --success-color: #00b050;
+            --danger-color: #ff0000;
+            --text-color: #333333;
+            --light-gray: #f2f2f2;
+            --bg-color: #f9f9f9;
+            --card-bg: white;
+            --topbar-bg: white;
+            --border-color: #eee;
+            --hover-color: rgba(255,255,255,0.2);
+        }
+        
+        .dark {
+            --primary-color: #3a67b2;
+            --secondary-color: #1e2c3a;
+            --text-color: #e0e0e0;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --topbar-bg: #1e1e1e;
+            --light-gray: #252525;
+            --border-color: #333;
+            --hover-color: rgba(255,255,255,0.1);
+        }
+        
         body {
-            font-family: 'Amiri', serif;
-            background-color: #F8FAFC;
-            background-image: var(--tw-gradient-stops);
-            background-attachment: fixed;
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
         }
-        .dark body {
-            background-color: #0F172A;
+        
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: 70px 1fr;
+            height: 100vh;
         }
-
-        .hero-section {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), var(--tw-gradient-stops);
-            background-size: cover;
-            background-position: center;
-        }
-
-        .section-pattern {
-            background-image: var(--tw-bg-image-texture-light);
-        }
-        .dark .section-pattern {
-            background-image: var(--tw-bg-image-texture-dark);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-right: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 1.25rem;
-            height: 1.25rem;
-            border-radius: 50%;
-            background-color: #D4A017;
-            border: 3px solid #805D3D;
-            transition: all 0.3s ease;
+        
+        /* الشريط الجانبي */
+        .sidebar {
+            background-color: var(--primary-color);
+            color: white;
+            grid-row: 1 / span 2;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
             z-index: 10;
+            transition: transform 0.3s ease;
         }
-        .timeline-item:hover::before {
-            transform: scale(1.2);
-            box-shadow: 0 0 0 4px rgba(212, 160, 23, 0.3);
-        }
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            top: 1.25rem;
-            right: 0.5rem;
-            width: 3px;
-            height: calc(100% + 1rem);
-            background-color: #805D3D;
-        }
-        .timeline-item:last-child::after {
-            display: none;
-        }
-
-        .sheikh-card {
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .dark .sheikh-card {
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .sheikh-card:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-        .dark .sheikh-card:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background-color: #D4A017;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
-        .mobile-menu {
-            transition: all 0.3s ease;
-            transform: translateY(-20px);
-            opacity: 0;
-            visibility: hidden;
-        }
-        .mobile-menu.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .clans-table-container {
-            max-height: 500px;
-            overflow-y: auto;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .poem-card {
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #D4A017;
-        }
-        .dark .poem-card {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-        .poem-card:hover {
-            transform: translateY(-0.25rem);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        .dark .poem-card:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .visitor-counter {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: rgba(58, 74, 95, 0.9);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-        }
-        .dark .visitor-counter {
-            background-color: rgba(212, 160, 23, 0.9);
-            color: #1E293B;
-        }
-        .visitor-counter i {
-            margin-left: 5px;
-        }
-
-        /* Accordion Styles */
-        .accordion-header {
-            cursor: pointer;
-            padding: 1rem;
-            background-color: #3A4A5F;
-            color: white;
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease;
+        
+        .sidebar-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .accordion-header:hover {
-            background-color: #2A3646;
+        
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 10px;
         }
-        .accordion-content {
+        
+        .menu-toggle {
             display: none;
-            padding: 1.5rem;
-            background-color: #F8FAFC;
-            border-radius: 0 0 0.5rem 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-size: 1.5rem;
+            margin-left: 15px;
         }
-        .dark .accordion-content {
-            background-color: #1E293B;
+        
+        .nav-menu {
+            list-style: none;
+            padding: 0;
         }
-        .accordion-content.active {
+        
+        .nav-item {
+            margin-bottom: 15px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--hover-color);
+        }
+        
+        .nav-link i {
+            margin-left: 10px;
+        }
+        
+        /* الشريط العلوي */
+        .topbar {
+            background-color: var(--topbar-bg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            transition: background-color 0.3s;
+        }
+        
+        .search-box input {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            font-size: 16px;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        /* المحتوى الرئيسي */
+        .main-content {
+            padding: 25px;
+            overflow-y: auto;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: background-color 0.3s;
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
             display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
-        .accordion-icon {
-            transition: transform 0.3s ease;
+        
+        input, select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 16px;
         }
-        .accordion-icon.active {
-            transform: rotate(180deg);
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            font-size: 16px;
         }
-
+        
+        .btn:hover {
+            background-color: #24447d;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .status-flowing {
+            color: var(--success-color);
+            font-weight: 500;
+        }
+        
+        .status-no-data {
+            color: var(--danger-color);
+            font-weight: 500;
+        }
+        
+        .charts-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+        
+        .dashboard-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .summary-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .summary-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        
+        .summary-card .number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .loader {
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .charts-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
             }
-            .hero-subtitle {
-                font-size: 1.25rem;
+            
+            .sidebar {
+                grid-row: auto;
+                transform: translateX(100%);
+                position: fixed;
+                height: 100vh;
+                width: 250px;
+                top: 0;
+                right: 0;
             }
-            .clans-table-container {
-                max-height: 400px;
+            
+            .sidebar.open {
+                transform: translateX(0);
             }
-            .visitor-counter {
-                bottom: 10px;
-                left: 10px;
-                font-size: 12px;
-                padding: 6px 10px;
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .topbar {
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .dashboard-summary {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .card-body {
+                padding: 15px;
             }
         }
     </style>
 </head>
-<body class="text-gray-800 dark:text-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-primary dark:to-dark-secondary">
-    <!-- Visitor Counter -->
-    <div id="visitorCounter" class="visitor-counter hidden">
-        <i class="fas fa-users"></i>
-        <span id="visitorCount">0</span> زائر
-    </div>
-
-    <!-- Header & Navigation -->
-    <header class="relative">
-        <div class="relative h-screen max-h-[800px] hero-section" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimZIAUeTU_MN0yMv5Sg3XJdwgfBWXX24A8DD6yKQZSG9AFiZSnj5u_8d3FNDCYBe-O8nG_cErsg3AwPYtXAg8kK7Z0boWAAVSKzq6ygadOZqWmEoAtnJGz-Rt9J_gSz-UUfJ3pzw157XdY/s320/%25D8%25AD%25D8%25B5%25D9%2586+%25D8%25A7%25D8%25A8%25D9%2586+%25D8%25A8%25D9%2583%25D8%25B1%25D9%258A.jpg');">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-
-            <nav class="relative z-10 container mx-auto px-4 sm:px-6 py-6 flex items-center justify-between">
-                <div class="text-white text-2xl sm:text-3xl font-bold tracking-wide flex items-center">
-                    <i class="fas fa-mountain-sun mr-3 text-accent"></i>
-                    <span>قبيلة بني مروان</span>
-                </div>
-
-                <div class="hidden md:flex space-x-6 space-x-reverse">
-                    <a href="#intro" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">الرئيسية</a>
-                    <a href="#origins" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">النسب والجذور</a>
-                    <a href="#branches" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">فروع القبيلة</a>
-                    <a href="#demographics" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">التوزيع الديموغرافي</a>
-                    <a href="#lands" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">الأراضي</a>
-                    <a href="#history" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">الأحداث التاريخية</a>
-                    <a href="#figures" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">شخصيات بارزة</a>
-                    <a href="#poems" class="nav-link text-white hover:text-accent px-3 py-2 transition duration-300">قصائد تراثية</a>
-                    <button id="dark-mode-toggle-desktop" class="text-white hover:text-accent transition duration-300 focus:outline-none">
-                        <i class="fas fa-moon text-xl"></i>
-                    </button>
-                </div>
-
-                <div class="md:hidden flex items-center space-x-4 space-x-reverse">
-                    <button id="dark-mode-toggle" class="text-white focus:outline-none">
-                        <i class="fas fa-moon text-xl"></i>
-                    </button>
-                    <button id="menu-toggle" class="text-white focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </nav>
-
-            <div id="mobile-menu" class="mobile-menu fixed z-20 top-20 right-4 bg-white dark:bg-dark-primary text-gray-800 dark:text-white p-6 rounded-lg shadow-xl w-64">
-                <div class="flex flex-col space-y-4">
-                    <a href="#intro" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">الرئيسية</a>
-                    <a href="#origins" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">النسب والجذور</a>
-                    <a href="#branches" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">فروع القبيلة</a>
-                    <a href="#demographics" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">التوزيع الديموغرافي</a>
-                    <a href="#lands" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">الأراضي</a>
-                    <a href="#history" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">الأحداث التاريخية</a>
-                    <a href="#figures" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">شخصيات بارزة</a>
-                    <a href="#poems" class="hover:text-accent px-3 py-2 rounded-lg transition duration-300 hover:bg-primary/10">قصائد تراثية</a>
-                </div>
+<body>
+    <div class="container">
+        <!-- الشريط الجانبي -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <span>نظام مراقبة الآبار</span>
+                <span class="theme-toggle" id="theme-toggle">🌙</span>
             </div>
-
-            <div class="relative z-10 container mx-auto px-4 sm:px-6 h-full flex flex-col justify-center items-center text-center text-white">
-                <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold mb-6 animate-fade-in">قبيلة بني مروان</h1>
-                <p class="hero-subtitle text-xl sm:text-2xl max-w-4xl mb-8 leading-relaxed">إرث تهامة عبر العصور: تاريخ عريق وحضارة راسخة في الجزيرة العربية، مزينة بالشجاعة والبطولات</p>
-                <a href="#intro" class="bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 animate-bounce-slow inline-flex items-center">
-                    ابدأ الرحلة التاريخية
-                    <i class="fas fa-arrow-down mr-2"></i>
-                </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i>📊</i> لوحة التحكم
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i>🛢️</i> بيانات الآبار
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i>📋</i> التقارير
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i>⚙️</i> إعدادات التاجات
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i>👥</i> إدارة المستخدمين
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- الشريط العلوي -->
+        <div class="topbar">
+            <div class="menu-toggle" id="menu-toggle">☰</div>
+            <div class="search-box">
+                <input type="text" placeholder="بحث..." style="min-width: 200px;">
             </div>
-
-            <div class="absolute bottom-8 left-0 right-0 flex justify-center">
-                <a href="#intro" class="text-white animate-bounce">
-                    <i class="fas fa-chevron-down text-2xl"></i>
-                </a>
+            <div class="user-profile">
+                <div class="user-avatar">م</div>
+                <span>مدير النظام</span>
             </div>
         </div>
-    </header>
-
-    <!-- Main Content with Accordion -->
-    <main class="container mx-auto px-4 sm:px-6 py-16 md:py-20">
-        <!-- مقدمة -->
-        <section id="intro">
-            <div class="accordion-header" data-target="intro-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary">مقدمة</h2>
-                <i class="fas fa-chevron-down accordion-icon"></i>
-            </div>
-            <div id="intro-content" class="accordion-content">
-                <div class="flex flex-col lg:flex-row gap-10 items-center">
-                    <div class="lg:w-1/2">
-                        <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                            <p class="mb-4">بسم الله الرحمن الرحيم</p>
-                            <p class="mb-4">تتألق قبيلة بني مروان كإحدى الركائز التاريخية والثقافية في تهامة، حيث حفرت اسمها في سجل الزمن بإرث يمتد من عصور ما قبل الإسلام إلى الحاضر المعاصر. كفرع عريق من عك التهامية، تجسد هذه القبيلة قصة صمود وتكيف، حيث واجهت تحديات الغزوات، الصراعات السياسية، والتحولات الاجتماعية، محافظةً على هويتها ونفوذها في جازان وحجة.</p>
-                            <p class="mb-4">من حماية سواحل ميدي إلى قيادة معارك الشعاب، ومن دعم الدولة السعودية إلى المساهمة في بناء مستقبل مشرق، تروي بني مروان حكاية شعب متجذر في أرضه، متطلع إلى آفاق جديدة. اشتهرت القبيلة بألقاب تعكس قوتها وجرأتها، مثل "قطعة من جهنم" كما وصفها الأديب جرجي زيدان في مجلة الهلال عام 1911، و"قراصنة البحر الأحمر" و"قراصنة العرب" كما أطلقت عليها الوثائق الإيطالية والعثمانية، مما يعكس تأثيرها البحري والعسكري في المنطقة.</p>
-                            <p class="mb-4">كتب المؤرخ المقحفي عن بني مروان قائلاً: "بنو مروان من قبائل تهامة الشمالية، ولهم مواقف بطولية في محاربة الوجود العثماني في اليمن"، بينما وصفهم عبد الرحمن الحضرمي بأنهم "قبيلة بأطراف الجبال التهامية في منطقة الشعاب، يعرفون بالشجاعة". هذه الأوصاف تبرز مكانة القبيلة كقوة مقاومة ومدافعة عن أراضيها.</p>
-                        </div>
-                    </div>
-                    <div class="lg:w-1/2 flex justify-center">
-                        <div class="bg-white dark:bg-dark-secondary rounded-xl shadow-2xl p-8 max-w-md w-full transform transition duration-300 hover:scale-[1.02]">
-                            <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
-                                <i class="fas fa-list-ol mr-3 text-accent"></i>
-                                أقسام الموقع
-                            </h3>
-                            <ul class="space-y-4">
-                                <li class="flex items-center">
-                                    <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">1</span>
-                                    <span class="text-gray-700 dark:text-gray-300">النسب والجذور</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">2</span>
-                                    <span class="text-gray-700 dark:text-gray-300">فروع وفخوذ القبيلة</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">3</span>
-                                    <span class="text-gray-700 dark:text-gray-300">التوزيع الديموغرافي</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">4</span>
-                                    <span class="text-gray-700 dark:text-gray-300">الأراضي</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">5</span>
-                                    <span class="text-gray-700 dark:text-gray-300">الأحداث التاريخية</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">6</span>
-                                    <span class="text-gray-700 dark:text-gray-300">شخصيات بارزة</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-accent text-white mr-3">7</span>
-                                    <span class="text-gray-700 dark:text-gray-300">قصائد تراثية</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+        
+        <!-- المحتوى الرئيسي -->
+        <div class="main-content">
+            <h1>لوحة التحكم الرئيسية</h1>
+            
+            <!-- ملخص لوحة التحكم -->
+            <div class="dashboard-summary">
+                <div class="summary-card">
+                    <h3>الآبار النشطة</h3>
+                    <div class="number" id="active-wells">8</div>
+                </div>
+                <div class="summary-card">
+                    <h3>إجمالي تدفق النفط</h3>
+                    <div class="number" id="total-flow">12,450</div>
+                </div>
+                <div class="summary-card">
+                    <h3>متوسط ضغط المنبع</h3>
+                    <div class="number" id="avg-pressure">1,250</div>
+                </div>
+                <div class="summary-card">
+                    <h3>آبار تحتاج صيانة</h3>
+                    <div class="number" id="maintenance-needed">3</div>
                 </div>
             </div>
-        </section>
-
-        <!-- النسب والجذور -->
-        <section id="origins" class="mt-8">
-            <div class="accordion-header" data-target="origins-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary">القسم الأول: النسب والجذور</h2>
-                <i class="fas fa-chevron-down accordion-icon"></i>
-            </div>
-            <div id="origins-content" class="accordion-content">
-                <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8 mb-12">
-                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
-                        <i class="fas fa-tree mr-3 text-secondary"></i>
-                        أصل قبيلة بني مروان ونسبها
-                    </h3>
-                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                        <p class="mb-4">تُعد قبيلة بني مروان إحدى القبائل العربية العريقة المنتمية إلى قبيلة عك التهامية، وهي فرع بارز من القبائل العدنانية التي استوطنت منطقة تهامة في جنوب غرب الجزيرة العربية منذ عصور موغلة في القدم.</p>
-                        <p class="mb-4">يرجع نسب القبيلة إلى <strong class="text-secondary">مروان بن وداعة بن زيد بن عمران بن ربيعة بن عبس بن شحارة بن غالب بن عبد الله بن عك بن عدنان بن أدد بن مقوم بن ناحور بن تيرح بن يعرب بن يشجب بن نابت بن إسماعيل بن إبراهيم الخليل عليهما السلام</strong>.</p>
-                        <p class="mb-4">هذا النسب، الذي توارثته الروايات القبلية ودعمته بعض المصادر التاريخية، يربط بني مروان بجذور عدنانية عميقة، مما يعزز مكانتها ضمن النسيج القبلي للجزيرة العربية. قبيلة عك، التي تُعتبر بني مروان امتدادًا لها، اشتهرت بحريتها واستقلالها قبل الإسلام، إذ لم تخضع لسلطة الممالك المجاورة إلا في سياقات استثنائية، كما وثّق ياقوت الحموي في "معجم البلدان" (القرن الثالث عشر الميلادي).</p>
-                        <p class="mb-4">بني مروان، كفرع رئيسي من عك، ورثوا هذا الإرث من النضال والصمود، فأصبحوا البطن الباقي من عمران بن ربيعة بن عبس بن عبد الله العكي، الجذم الأساسي لقبيلة عك. هذا الارتباط جعلهم حاملي لواء الهوية العكية في تهامة، حيث برزوا كقوة سياسية وعسكرية مستقلة. تؤكد المصادر التاريخية العربية، مثل "صفة جزيرة العرب" للهمداني (القرن العاشر الميلادي)، سيطرة عك على السواحل الغربية للجزيرة العربية، مع دور بارز لبني مروان في حماية هذه المناطق من الغزوات الخارجية.</p>
-                        <p class="mb-4">وثّق الرحالة البريطاني ريتشارد فرانسيس برتون في كتابه "Personal Narrative of a Pilgrimage to Al-Madinah and Meccah" (1855) استقلال قبائل تهامة، بما في ذلك بني مروان، عن السلطات العثمانية في منتصف القرن التاسع عشر الميلادي. أشار برتون إلى قوتهم العسكرية وسيطرتهم على مناطق مثل وادي مور والشعاب، مما يعكس مكانتهم كقوة محلية عصية على الخضوع.</p>
-                        <p class="mb-4">إضافة إلى ذلك، اشتهرت القبيلة بنخوتها "لاد مدهوس"، وهي صيحة حربية كانت تُطلق أثناء المعارك ضد الأعداء الخارجيين، كما وثق العقيلي محمد بن أحمد في كتابه "الأدب الشعبي في الجنوب" (ج1، ص108). هذه النخوة تعكس الروح القتالية والوحدة التي ميزت بني مروان في مواجهة التحديات.</p>
+            
+            <!-- بطاقة إعدادات النظام -->
+            <div class="card">
+                <div class="card-header">
+                    إعدادات تحليل البيانات
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="start-date">تاريخ البداية</label>
+                        <input type="date" id="start-date" value="2023-07-01">
                     </div>
-                    <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg border-r-4 border-accent mt-6">
-                        <h4 class="text-lg font-semibold mb-2 text-secondary">ملاحظات حول النسب:</h4>
-                        <p class="text-gray-700 dark:text-gray-300">توجد اختلافات طفيفة في تسلسل النسب بين الروايات القبلية وبعض المصادر المكتوبة، خاصة في الأجيال الوسطى بين عك وعدنان، لكن الإجماع يبقى على انتماء بني مروان إلى عك.</p>
+                    <div class="form-group">
+                        <label for="end-date">تاريخ النهاية</label>
+                        <input type="date" id="end-date" value="2023-07-31">
                     </div>
-
-                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg shadow">
-                            <h4 class="font-bold mb-2 text-primary">المصادر التاريخية:</h4>
-                            <ul class="list-disc pr-5 space-y-1 text-gray-700 dark:text-gray-300">
-                                <li>"معجم البلدان" - ياقوت الحموي (القرن الثالث عشر الميلادي)</li>
-                                <li>"صفة جزيرة العرب" - أبو محمد الحسن بن أحمد الهمداني (القرن العاشر الميلادي)</li>
-                                <li>"Personal Narrative of a Pilgrimage to Al-Madinah and Meccah" - ريتشارد فرانسيس برتون (1855)</li>
-                                <li>"الأدب الشعبي في الجنوب" - العقيلي محمد بن أحمد</li>
-                            </ul>
-                        </div>
-                        <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg shadow">
-                            <h4 class="font-bold mb-2 text-primary">المصادر الشفوية:</h4>
-                            <ul class="list-disc pr-5 space-y-1 text-gray-700 dark:text-gray-300">
-                                <li>روايات كبار السن في القبيلة</li>
-                                <li>المشايخ والعلماء</li>
-                                <li>المراجع القبلية الموثقة</li>
-                            </ul>
-                        </div>
+                    <div class="form-group">
+                        <label for="interval">الفترة الزمنية</label>
+                        <select id="interval">
+                            <option value="1d">يومي</option>
+                            <option value="1h">ساعي</option>
+                            <option value="15m">كل 15 دقيقة</option>
+                        </select>
                     </div>
+                    <button class="btn" id="run-analysis">تشغيل التحليل</button>
+                    <div class="loader" id="analysis-loader"></div>
                 </div>
             </div>
-        </section>
-
-        <!-- فروع وفخوذ القبيلة -->
-        <section id="branches" class="mt-8">
-            <div class="accordion-header" data-target="branches-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary">أقسام وفخوذ بني مروان</h2>
-                <i class="fas fa-chevron-down accordion-icon"></i>
-            </div>
-            <div id="branches-content" class="accordion-content">
-                <div class="bg-white dark:bg-dark-secondary rounded-xl shadow-lg p-6 md:p-8">
-                    <h3 class="text-2xl font-bold text-primary flex items-center mb-6">
-                        <i class="fas fa-sitemap mr-3 text-secondary"></i>
-                        فخوذ قبيلة بني مروان
-                    </h3>
-                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                        <p class="mb-4">تضم قبيلة بني مروان 75 فخذًا رئيسيًا يتفرع كل منها إلى عوائل وبيوت فرعية، مما يعكس تنوعها واتساعها الاجتماعي. تشكل هذه الفخوذ شبكة اجتماعية معقدة، حيث يرتبط كل فخذ بتاريخ وأدوار محددة في مسيرة القبيلة.</p>
-                        <p class="mb-4">من بين الفخوذ البارزة بني بكري، التي لعبت أدوارًا قيادية في المعارك والتفاوض مع القوى الإقليمية، والمحاجبة التي اشتهرت بمواقفها البطولية. كما تشمل القبيلة أحلافًا تاريخية مثل بني الحكم (حكامية بني مروان سابقًا)، والخميسين من حاشد، وبني دارس من بني الحارث، وإن كانت هذه القبائل مستقلة اليوم.</p>
-                        <p class="mb-4">ومن الفروع المهمة فخذ بني صالح من العتنة، الذين هاجروا قديمًا واستقروا في بلدة سعيدة الصوالحة في منطقة عسير، التي سُميت باسمهم. كما يوجد أفراد من بني الخوري في قرى مثل الخواري حول صبيا، وقرية المجنة، وقرية الحبج في أحد المسارحة.</p>
-                    </div>
-
-                    <div class="clans-table-container mt-6">
-                        <table class="w-full text-right border-collapse">
+            
+            <!-- بطاقة نتائج التحليل -->
+            <div class="card">
+                <div class="card-header">
+                    تقرير أداء الآبار
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="wells-table">
                             <thead>
                                 <tr>
-                                    <th class="p-3 bg-primary text-white font-semibold border border-gray-300 dark:border-gray-600">الفخذ</th>
-                                    <th class="p-3 bg-primary text-white font-semibold border border-gray-300 dark:border-gray-600">الفخذ</th>
-                                    <th class="p-3 bg-primary text-white font-semibold border border-gray-300 dark:border-gray-600">الفخذ</th>
+                                    <th>رقم البئر</th>
+                                    <th>الحالة</th>
+                                    <th>التاريخ</th>
+                                    <th>TCA</th>
+                                    <th>CCA</th>
+                                    <th>CCA1</th>
+                                    <th>ضغط المنبع</th>
+                                    <th>ضغط المصب</th>
+                                    <th>تدفق النفط</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني بكري</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">القيوس</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">المغافلة (آل مرهوب)</td>
+                                    <td>WELL-001</td>
+                                    <td class="status-flowing">Flowing</td>
+                                    <td>2023-07-15</td>
+                                    <td>0.85</td>
+                                    <td>1.2</td>
+                                    <td>0.7</td>
+                                    <td>1200</td>
+                                    <td>850</td>
+                                    <td>1500</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني الحداد</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">العتنة (آل عتين)</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">العربة</td>
+                                    <td>WELL-002</td>
+                                    <td class="status-flowing">Flowing</td>
+                                    <td>2023-07-18</td>
+                                    <td>0.92</td>
+                                    <td>1.1</td>
+                                    <td>0.8</td>
+                                    <td>1150</td>
+                                    <td>900</td>
+                                    <td>1750</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">العبادل (آل بو عبدل)</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني أمهبة</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">المجادلة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">المحاجبة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني الجماعي</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">المرازقة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني فاضل</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني زيلع</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني العاتي</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الخوارية (بني الخوري)</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الحراملة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">المررة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني فايد</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني العواجي</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">الجعادرة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني الجراح</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الجعاملة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الزررة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني الشوك</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">البحرة</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني تمر</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">التنابكة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">البدادية</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني المدعلل (المقاطنة)</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">آل حاوي</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">الخوامل</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني القراص</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني أممعوز</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني أمخمج</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الغورة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">القمرة</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">آل بوعقة</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">الحراضية</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الشعابية</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الدواكلة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الأزايبة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني هلال</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني الدش</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">الجواهرة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الجعدة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني عجار</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني هتان</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني الشهير</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني المش</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">القظامة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الحناترة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الفرانتة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">المشارفة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني عضل</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">الكراشمة</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">الغواصة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني مطر</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الحوافنة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الحرابية</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني المكي</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">الحبالية</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">الشعاولة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الدنانة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">المفارجة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني القيم</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني شبيكة</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني الزين</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">بني علوي</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">بني بختان</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الوقاصة</td>
-                                    <td class="p-3 bg-gray-50 dark:bg-dark-primary border border-gray-300 dark:border-gray-600">الجرابة</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">آل بو السيل</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">آل مغبش</td>
-                                    <td class="p-3 bg-white dark:bg-dark-secondary border border-gray-300 dark:border-gray-600">آل عطاف</td>
+                                    <td>WELL-003</td>
+                                    <td class="status-no-data">No Data</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg border-r-4 border-accent mt-8">
-                        <h4 class="text-lg font-semibold mb-2 text-secondary">ملاحظات حول الفخوذ:</h4>
-                        <ul class="list-disc pr-5 space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>تشكل الفخوذ شبكة اجتماعية معقدة، حيث يتفرع كل فخذ إلى بيوت فرعية، مما يعزز تماسك القبيلة وتنوعها.</li>
-                            <li>فخوذ مثل بني بكري والمحاجبة لعبت أدوارًا قيادية بارزة، خاصة في المعارك التاريخية والتفاوض مع القوى الإقليمية، كما يتضح في تسلسل المشايخ.</li>
-                            <li>تضم القبيلة أحلافًا تاريخية، مثل بني الحكم (حكامية بني مروان سابقًا)، الخميسين (من حاشد)، وبني دارس (من بني الحارث)، وإن كانت هذه القبائل مستقلة اليوم. أما الحراضية فتشمل أسرًا مروانية وأحلافًا من بني هاشم وهمدان، مع احتفاظ الأشراف (مثل الحواذنة وآل خيرات) بنسبهم.</li>
-                            <li>فخذ بني صالح من العتنة هاجر إلى عسير، حيث أسس بلدة سعيدة الصوالحة، بينما يتواجد بني الخوري في قرى مثل الخواري والمجنة والحبج.</li>
-                        </ul>
-                    </div>
-
-                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg shadow">
-                            <h4 class="font-bold mb-2 text-primary">المصادر التاريخية:</h4>
-                            <ul class="list-disc pr-5 space-y-1 text-gray-700 dark:text-gray-300">
-                                <li>"صفة جزيرة العرب" - أبو محمد الحسن بن أحمد الهمداني (القرن العاشر الميلادي)</li>
-                                <li>"تحفة القارئ والسامع في اختصار تاريخ اللامع" - عبد الله بن علي العمودي</li>
-                                <li>"Military Handbooks on Arabia" - الموسوعة البريطانية (1913-1917)</li>
-                            </ul>
+                </div>
+            </div>
+            
+            <!-- بطاقة الرسوم البيانية -->
+            <div class="card">
+                <div class="card-header">
+                    مؤشرات الأداء
+                </div>
+                <div class="card-body">
+                    <div class="charts-wrapper">
+                        <div class="chart-container">
+                            <canvas id="flowChart"></canvas>
                         </div>
-                        <div class="bg-white dark:bg-dark-secondary p-4 rounded-lg shadow">
-                            <h4 class="font-bold mb-2 text-primary">المصادر الحديثة:</h4>
-                            <ul class="list-disc pr-5 space-y-1 text-gray-700 dark:text-gray-300">
-                                <li>"تاريخ المملكة العربية السعودية" - عبد الله الصالح العثيمين</li>
-                                <li>"Asir Before the First World War" - كيناهان كورنواليس (1916)</li>
-                                <li>روايات كبار السن في القبيلة</li>
-                            </ul>
+                        <div class="chart-container">
+                            <canvas id="pressureChart"></canvas>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- التوزيع الديموغرافي -->
-        <section id="demographics" class="mt-8">
-            <div class="accordion-header" data-target="demographics-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary">التوزيع الديموغرافي</h2>
-                <i class="fas fa-chevron-down accordion-icon"></i>
-            </div>
-            <div id="demographics-content" class="accordion-content">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
-                        <h3 class="text-2xl font-bold mb-4 text-primary flex items-center">
-                            <i class="fas fa-map-marked-alt mr-3 text-secondary"></i>
-                            التوزيع الجغرافي
-                        </h3>
-                        <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                            <p class="mb-4">تمتد قبيلة بني مروان عبر مناطق تهامة في المملكة العربية السعودية واليمن، حيث تتوزع فخوذها على النحو التالي:</p>
-                            <ul class="list-disc pr-5 space-y-2 mb-4">
-                                <li><strong>في السعودية:</strong> تتركز القبيلة في منطقة جازان، خاصة في محافظة الطوال والحرث، مع وجود أفراد في قرى مثل الخواري حول صبيا، المجنة، والحبج في أحد المسارحة.</li>
-                                <li><strong>في اليمن:</strong> تنتشر القبيلة في محافظة حجة، خاصة في مديريات حيران وميدي وحرض، بالإضافة إلى مناطق وادي مور والحديدة.</li>
-                            </ul>
-                            <p class="mb-4">يتميز أبناء القبيلة بترابط اجتماعي قوي رغم التوزع الجغرافي، حيث يحافظون على علاقات المصاهرة والزيارات المنتظمة، مما يعزز من وحدتهم وهويتهم الثقافية.</p>
-                        </div>
-                        <div class="mt-4">
-                            <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">"صفة جزيرة العرب" - الهمداني، "Asir Before the First World War" - كيناهان كورنواليس، روايات قبلية</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
-                        <h3 class="text-2xl font-bold mb-4 text-primary flex items-center">
-                            <i class="fas fa-users mr-3 text-secondary"></i>
-                            الخصائص الديموغرافية
-                        </h3>
-                        <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                            <p class="mb-4">تتميز قبيلة بني مروان بالخصائص التالية:</p>
-                            <ul class="list-disc pr-5 space-y-2 mb-4">
-                                <li>يبلغ عدد أفراد القبيلة عشرات الآلاف موزعين بين السعودية واليمن.</li>
-                                <li>يغلب على القبيلة الطابع الريفي والزراعي في المناطق الداخلية، بينما يعمل سكان المناطق الساحلية في الصيد والتجارة.</li>
-                                <li>تحافظ القبيلة على تقاليدها الثقافية والاجتماعية رغم التحضر، مع التمسك بنخوتها "لاد مدهوس" كرمز للوحدة والشجاعة.</li>
-                            </ul>
-                        </div>
-                        <div class="mt-4">
-                            <h4 class="font-semibold text-secondary mb-2">المصادر:</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">تعدادات رسمية، تقديرات قبلية</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-12 bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
-                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
-                        <i class="fas fa-chart-pie mr-3 text-secondary"></i>
-                        إحصاءات ديموغرافية
-                    </h3>
-                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                        <p class="mb-4">تُظهر التقديرات أن قبيلة بني مروان تشكل جزءًا هامًا من النسيج الاجتماعي في تهامة، حيث تتوزع عائلاتها بين المناطق الحضرية والريفية. في السعودية، تتركز في جازان، بينما في اليمن، تمتد من حجة إلى مناطق ساحلية مثل ميدي. يُقدر عدد أفراد القبيلة بعشرات الآلاف، مع تنوع في أنماط الحياة بين الزراعة، الصيد، والتجارة.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- الأراضي -->
-        <section id="lands" class="mt-8">
-            <div class="accordion-header" data-target="lands-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary">الأراضي</h2>
-                <i class="fas fa-chevron-down accordion-icon"></i>
-            </div>
-            <div id="lands-content" class="accordion-content">
-                <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
-                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
-                        <i class="fas fa-map mr-3 text-secondary"></i>
-                        الأراضي التاريخية لبني مروان
-                    </h3>
-                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                        <p class="mb-4">تمتلك قبيلة بني مروان أراضي شاسعة في تهامة، تمتد عبر الحدود بين المملكة العربية السعودية واليمن. تشمل هذه الأراضي:</p>
-                        <ul class="list-disc pr-5 space-y-2 mb-4">
-                            <li><strong>في السعودية:</strong> مناطق في جازان مثل الطوال، الحرث، والقرى المحيطة مثل الخواري، المجنة، والحبج.</li>
-                            <li><strong>في اليمن:</strong> مديريات حيران، ميدي، وحرض في محافظة حجة، بالإضافة إلى وادي مور والحديدة.</li>
-                        </ul>
-                        <p class="mb-4">تتميز هذه الأراضي بتنوعها الجغرافي بين السهول الساحلية والجبال التهامية، مما ساهم في تنوع أنشطة القبيلة بين الزراعة والصيد. كما كانت ميناء ميدي مركزًا استراتيجيًا للقبيلة، حيث اشتهرت بأنشطتها البحرية التي أكسبتها لقب "قراصنة البحر الأحمر".</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- الأحداث التاريخية -->
-        <section id="history" class="mt-8">
-            <div class="accordion-header" data-target="history-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary">الأحداث التاريخية</h2>
-                <i class="fas fa-chevron-down accordion-icon"></i>
-            </div>
-            <div id="history-content" class="accordion-content">
-                <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
-                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
-                        <i class="fas fa-landmark mr-3 text-secondary"></i>
-                        تسلسل الأحداث التاريخية
-                    </h3>
-                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                        <p class="mb-4">شاركت قبيلة بني مروان في العديد من الأحداث التاريخية التي شكلت مسار منطقة تهامة، من مقاومة الغزوات الأجنبية إلى دعم الدولة السعودية. فيما يلي أبرز المحطات التاريخية:</p>
-                    </div>
-
-                    <div class="space-y-8">
-                        <div class="timeline-item">
-                            <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
-                                <h4 class="text-xl font-semibold mb-2 text-secondary">المقاومة ضد العثمانيين (القرن 19)</h4>
-                                <p class="text-gray-700 dark:text-gray-300">قاومت بني مروان الوجود العثماني في تهامة، خاصة في معركة الشعاب عام 1891، حيث فتكوا بالجيش التركي، مما أسفر عن مقتل 400 جندي تركي. استمرت هجماتهم على الحاميات العثمانية، مما دفع الدولة العثمانية لإنشاء متصرفية خاصة ببني مروان بدلاً من متصرفية أبي عريش.</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصادر: زبارة، محمد بن يحيى، "أئمة اليمن بالقرن الرابع عشر الهجري"، ص39؛ نجدة فتحي، "الجزيرة العربية في الوثائق البريطانية"، ص133</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
-                                <h4 class="text-xl font-semibold mb-2 text-secondary">معارك ضد إيطاليا (1901-1902)</h4>
-                                <p class="text-gray-700 dark:text-gray-300">خاضت بني مروان معارك بحرية ضد الإيطاليين، أبرزها معركة مصوع ودهلك عام 1901، حيث هاجم قراصنة القبيلة السواحل الإفريقية وغنموا أموالاً وذهباً، وساعدوا ثوارًا ضد إيطاليا. في عام 1902، ردت إيطاليا بقصف ميناء ميدي بعد رفض القبيلة تسليم لاجئ إيطالي، لكن المعركة انتهت بصلح بعد إعلان بني مروان الجهاد.</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصادر: الإرياني، "الدر المنثور في سيرة الإمام المنصور"؛ صحيفة المُدقِّق الأسترالية، 30-9-1902</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
-                                <h4 class="text-xl font-semibold mb-2 text-secondary">معارك ضد بريطانيا وفرنسا (القرن 19-20)</h4>
-                                <p class="text-gray-700 dark:text-gray-300">في القرن التاسع عشر وبدايات القرن العشرين، هاجم قراصنة بني مروان السفن البريطانية والفرنسية في البحر الأحمر، مما أثار قلق القوى الاستعمارية. رغم التعزيزات العسكرية، فشلت بريطانيا وفرنسا في حماية سفنهما، مما عزز سمعة بني مروان كقوة بحرية.</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصادر: تقرير المخابرات البريطانية، فرح قيصر، "اليمن في القرن التاسع عشر"</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
-                                <h4 class="text-xl font-semibold mb-2 text-secondary">الدولة السعودية الأولى (1744-1818)</h4>
-                                <p class="text-gray-700 dark:text-gray-300">دعمت بني مروان الدولة السعودية الأولى، حيث تحالف الشيخ بكري بن عبد الله مع حمود أبو مسمار، وشاركوا في حملات جنوبية نحو الحديدة.</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصادر: روايات قبلية، "Personal Narrative" - ريتشارد برتون</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
-                                <h4 class="text-xl font-semibold mb-2 text-secondary">الحرب الأهلية اليمنية (1962-1970)</h4>
-                                <p class="text-gray-700 dark:text-gray-300">دعمت بني مروان الملكيين في الحرب الأهلية اليمنية، وساهمت في حماية الحدود وتأمين خطوط الإمداد، خاصة في معركة الجبلين.</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصادر: "تاريخ اليمن الحديث" - العماد، روايات قبلية</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="bg-white dark:bg-dark-secondary p-4 md:p-6 rounded-lg shadow">
-                                <h4 class="text-xl font-semibold mb-2 text-secondary">الاضطرابات الحالية (2014-حتى الآن)</h4>
-                                <p class="text-gray-700 dark:text-gray-300">تواجه القبيلة تحديات أمنية في المناطق الحدودية بين السعودية واليمن، خاصة في حرض وحيران، مع الحفاظ على هويتها ودعم الاستقرار.</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">المصادر: تقارير حديثة عن الوضع في اليمن (2025)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- شخصيات بارزة -->
-        <section id="figures" class="mt-8">
-            <div class="accordion-header" data-target="figures-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary">أبرز شخصيات بني مروان</h2>
-                <i class="fas fa-chevron-down accordion-icon"></i>
-            </div>
-            <div id="figures-content" class="accordion-content">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- الشيخ بكري بن عبد الله -->
-                    <div class="sheikh-card bg-white dark:bg-dark-secondary p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-4">
-                                <i class="fas fa-user text-2xl text-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-primary">الشيخ بكري بن عبد الله</h4>
-                                <p class="text-secondary font-semibold">(أواخر القرن 17 - أوائل القرن 18)</p>
-                            </div>
-                        </div>
-                        <p class="mb-3 text-gray-700 dark:text-gray-300">قاد فخوذ بني المهاب والعبادلة والمرازقة، وانتقل بهم من الموسم إلى الفج بعد صراعات مع قبيلة الحرث، حيث سُمي وادي ابن عبد الله نسبة إليه. وسّع نطاق نفوذه عبر تحالفات مع قبائل مجاورة لمواجهة القبائل الغازية، وقاوم التمدد العثماني المبكر في المنطقة. تحالف مع حمود أبو مسمار بعد انضمام الأخير للدولة السعودية الأولى، وشارك في حملاتها جنوبًا نحو الحديدة.</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "Personal Narrative" - ريتشارد برتون</p>
-                    </div>
-
-                    <!-- الشيخ عبد الله حسين (الحاج) بكري -->
-                    <div class="sheikh-card bg-white dark:bg-dark-secondary p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-4">
-                                <i class="fas fa-user-tie text-2xl text-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-primary">الشيخ عبد الله حسين بكري</h4>
-                                <p class="text-secondary font-semibold">(1820-1870)</p>
-                            </div>
-                        </div>
-                        <p class="mb-3 text-gray-700 dark:text-gray-300">قاد القبيلة وأراضيها والقبائل المتحالفة، وخاض حروبًا ضد قبائل ودول غازية بعد سقوط الدولة السعودية الأولى،
-                                                    <!-- الشيخ عبد الله حسين (الحاج) بكري (Continued) -->
-                        <p class="mb-3 text-gray-700 dark:text-gray-300">قاد القبيلة وأراضيها والقبائل المتحالفة، وخاض حروبًا ضد قبائل ودول غازية بعد سقوط الدولة السعودية الأولى. اشتهر بقيادته معركة الشعاب عام 1891 ضد العثمانيين، حيث أظهر شجاعة فائقة، مما عزز سمعة بني مروان كـ"قطعة من جهنم" كما وصفها جرجي زيدان. كما قاد مفاوضات مع القوى الإقليمية للحفاظ على استقلال القبيلة.</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "أئمة اليمن بالقرن الرابع عشر الهجري" - محمد بن يحيى زبارة، روايات قبلية</p>
-                    </div>
-
-                    <!-- الشيخ حسن بن بكري -->
-                    <div class="sheikh-card bg-white dark:bg-dark-secondary p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-4">
-                                <i class="fas fa-user-shield text-2xl text-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-primary">الشيخ حسن بن بكري</h4>
-                                <p class="text-secondary font-semibold">(1875-1925)</p>
-                            </div>
-                        </div>
-                        <p class="mb-3 text-gray-700 dark:text-gray-300">قاد بني مروان خلال فترة الاضطرابات السياسية في أوائل القرن العشرين، وشارك في معارك بحرية ضد الإيطاليين في ميناء ميدي عام 1902. كان له دور بارز في تعزيز السيطرة البحرية للقبيلة، مما أكسبهم لقب "قراصنة العرب" في الوثائق الإيطالية. دعم جهود الملك عبد العزيز آل سعود لتوحيد المملكة، وساهم في تأمين الحدود الجنوبية.</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: "الدر المنثور في سيرة الإمام المنصور" - الإرياني، روايات قبلية</p>
-                    </div>
-
-                    <!-- الشيخ محمد بن علي العتني -->
-                    <div class="sheikh-card bg-white dark:bg-dark-secondary p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-4">
-                                <i class="fas fa-user-graduate text-2xl text-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-primary">الشيخ محمد بن علي العتني</h4>
-                                <p class="text-secondary font-semibold">(1900-1965)</p>
-                            </div>
-                        </div>
-                        <p class="mb-3 text-gray-700 dark:text-gray-300">من فخذ بني صالح العتنة، قاد هجرة أفراد من القبيلة إلى عسير، حيث أسس بلدة سعيدة الصوالحة. شارك في دعم الملكيين خلال الحرب الأهلية اليمنية (1962-1970)، وساهم في تعزيز الروابط الاجتماعية بين فخوذ القبيلة في السعودية واليمن.</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: روايات قبلية، "تاريخ اليمن الحديث" - العماد</p>
-                    </div>
-
-                    <!-- الشيخ عبد الرحمن بن فاضل -->
-                    <div class="sheikh-card bg-white dark:bg-dark-secondary p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-4">
-                                <i class="fas fa-user-check text-2xl text-accent"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-primary">الشيخ عبد الرحمن بن فاضل</h4>
-                                <p class="text-secondary font-semibold">(1880-1935)</p>
-                            </div>
-                        </div>
-                        <p class="mb-3 text-gray-700 dark:text-gray-300">من فخذ بني فاضل، اشتهر بقيادته العسكرية في مواجهة القوات البريطانية في البحر الأحمر خلال أواخر القرن التاسع عشر. كان له دور في تنظيم هجمات القراصنة على السفن الاستعمارية، مما عزز سمعة القبيلة كقوة بحرية مهيبة.</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">المصادر: تقرير المخابرات البريطانية، "اليمن في القرن التاسع عشر" - فرح قيصر</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- قصائد تراثية -->
-        <section id="poems" class="mt-8">
-            <div class="accordion-header" data-target="poems-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary">قصائد تراثية</h2>
-                <i class="fas fa-chevron-down accordion-icon"></i>
-            </div>
-            <div id="poems-content" class="accordion-content">
-                <div class="bg-gray-50 dark:bg-dark-primary rounded-xl shadow-lg p-6 md:p-8">
-                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
-                        <i class="fas fa-scroll mr-3 text-secondary"></i>
-                        مختارات من الشعر التراثي لبني مروان
-                    </h3>
-                    <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
-                        <p class="mb-4">يُعد الشعر جزءًا لا يتجزأ من تراث قبيلة بني مروان، حيث يعبر عن بطولاتها، قيمها، وتاريخها العريق. تحمل القصائد نخوتهم "لاد مدهوس" وتصور شجاعتهم في المعارك، خاصة ضد العثمانيين والقوى الاستعمارية. فيما يلي مختارات من قصائدهم:</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                        <!-- قصيدة 1 -->
-                        <div class="poem-card bg-white dark:bg-dark-secondary p-6 rounded-lg">
-                            <h4 class="text-xl font-bold mb-3 text-primary">قصيدة "لاد مدهوس"</h4>
-                            <p class="text-gray-700 dark:text-gray-300 mb-4 font-arabic leading-loose">
-                                يا راكبٍ فوق المهار العناقيد<br>
-                                من دارنا للشعاب يمّ الجريد<br>
-                                سلم على قومٍ بنو مروان الأسود<br>
-                                لاد مدهوسٍ بهم يرعب العيد<br>
-                                في الشعاب ثبتوا كما الجبال الراسيات<br>
-                                للعثماني ذاقوا مرّ الهزيمات<br>
-                                أربعمية جندي بالسيف قد ماتوا<br>
-                                ونخوتهم ترعد كالرعد في السماوات
-                            </p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">الشاعر: مجهول (من القرن التاسع عشر)<br>المصدر: "الأدب الشعبي في الجنوب" - العقيلي محمد بن أحمد</p>
-                        </div>
-
-                        <!-- قصيدة 2 -->
-                        <div class="poem-card bg-white dark:bg-dark-secondary p-6 rounded-lg">
-                            <h4 class="text-xl font-bold mb-3 text-primary">قصيدة "قراصنة البحر"</h4>
-                            <p class="text-gray-700 dark:text-gray-300 mb-4 font-arabic leading-loose">
-                                يا بحر ميدي شاهدٍ على الرجال<br>
-                                بنو مروان أهل السيف والنبال<br>
-                                سفن الطليان عجزت عنهم تفر<br>
-                                قراصنة العرب كالصقر في الجبال<br>
-                                نهبوا الذهب وأعادوا للعدو الخسارة<br>
-                                في مصوع ودهلك كانت لهم إثارة<br>
-                                بني مروان ما يهابون الموت<br>
-                                شجاعتهم في كل ديوانٍ حضارة
-                            </p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">الشاعر: مجهول (من أوائل القرن العشرين)<br>المصدر: روايات قبلية</p>
-                        </div>
-
-                        <!-- قصيدة 3 -->
-                        <div class="poem-card bg-white dark:bg-dark-secondary p-6 rounded-lg">
-                            <h4 class="text-xl font-bold mb-3 text-primary">قصيدة "تهامة الحرة"</h4>
-                            <p class="text-gray-700 dark:text-gray-300 mb-4 font-arabic leading-loose">
-                                تهامة يا دار العز والكرامة<br>
-                                بنو مروان أهل الشجاعة والشهامة<br>
-                                من وادي مور إلى الحرث والطوال<br>
-                                سيوفهم تقطع كل ظلمٍ واعتداء<br>
-                                في كل معركة نخوتهم ترتفع<br>
-                                لاد مدهوس صوتها ما ينخفض<br>
-                                يا عزنا يا إرثنا يا تاريخنا<br>
-                                بنو مروان رمزٍ للصمود الأنفس
-                            </p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">الشاعر: مجهول (من القرن العشرين)<br>المصدر: روايات قبلية</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- About -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-info-circle mr-2"></i>
-                        عن الموقع
-                    </h3>
-                    <p class="text-gray-300 leading-relaxed">موقع قبيلة بني مروان الرسمي، وثّق تاريخ القبيلة وإرثها العريق، من النسب إلى الأحداث التاريخية والقصائد التراثية، بهدف الحفاظ على الهوية الثقافية.</p>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-link mr-2"></i>
-                        روابط سريعة
-                    </h3>
-                    <ul class="space-y-2">
-                        <li><a href="#intro" class="text-gray-300 hover:text-accent transition duration-300">الرئيسية</a></li>
-                        <li><a href="#origins" class="text-gray-300 hover:text-accent transition duration-300">النسب والجذور</a></li>
-                        <li><a href="#branches" class="text-gray-300 hover:text-accent transition duration-300">فروع القبيلة</a></li>
-                        <li><a href="#history" class="text-gray-300 hover:text-accent transition duration-300">الأحداث التاريخية</a></li>
-                        <li><a href="#figures" class="text-gray-300 hover:text-accent transition duration-300">شخصيات بارزة</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-envelope mr-2"></i>
-                        تواصلوا معنا
-                    </h3>
-                    <p class="text-gray-300 mb-4">للتواصل والاستفسارات حول تاريخ القبيلة، يرجى مراسلتنا عبر البريد الإلكتروني أو وسائل التواصل الاجتماعي.</p>
-                    <div class="flex space-x-4 space-x-reverse">
-                        <a href="#" class="text-gray-300 hover:text-accent transition duration-300">
-                            <i class="fab fa-twitter text-2xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-accent transition duration-300">
-                            <i class="fab fa-instagram text-2xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-accent transition duration-300">
-                            <i class="fab fa-telegram text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 pt-8 border-t border-gray-600 text-center">
-                <p class="text-gray-300">&copy; 2025 قبيلة بني مروان. جميع الحقوق محفوظة.</p>
             </div>
         </div>
-    </footer>
-
-    <!-- JavaScript -->
+    </div>
+    
     <script>
-        // Dark Mode Toggle
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const darkModeToggleDesktop = document.getElementById('dark-mode-toggle-desktop');
-        const htmlElement = document.documentElement;
-
-        function toggleDarkMode() {
-            htmlElement.classList.toggle('dark');
-            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
-            updateMoonIcon();
-        }
-
-        function updateMoonIcon() {
-            const isDark = htmlElement.classList.contains('dark');
-            darkModeToggle.innerHTML = `<i class="fas fa-${isDark ? 'sun' : 'moon'} text-xl"></i>`;
-            darkModeToggleDesktop.innerHTML = `<i class="fas fa-${isDark ? 'sun' : 'moon'} text-xl"></i>`;
-        }
-
-        darkModeToggle.addEventListener('click', toggleDarkMode);
-        darkModeToggleDesktop.addEventListener('click', toggleDarkMode);
-
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'dark') {
-            htmlElement.classList.add('dark');
-        }
-        updateMoonIcon();
-
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            menuToggle.innerHTML = mobileMenu.classList.contains('active')
-                ? `<i class="fas fa-times text-2xl"></i>`
-                : `<i class="fas fa-bars text-2xl"></i>`;
-        });
-
-        // Smooth Scroll for Navigation Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    // Close mobile menu if open
-                    if (mobileMenu.classList.contains('active')) {
-                        mobileMenu.classList.remove('active');
-                        menuToggle.innerHTML = `<i class="fas fa-bars text-2xl"></i>`;
-                    }
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('نظام مراقبة الآبار جاهز للتشغيل');
+            
+            // التحقق من الوضع المظلم/الفاتح
+            function checkDarkMode() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                    document.getElementById('theme-toggle').textContent = '☀️';
                 }
-            });
-        });
-
-        // Visitor Counter
-        const visitorCounter = document.getElementById('visitorCounter');
-        const visitorCountSpan = document.getElementById('visitorCount');
-        let visitorCount = localStorage.getItem('visitorCount') || 0;
-        visitorCount++;
-        localStorage.setItem('visitorCount', visitorCount);
-        visitorCountSpan.textContent = visitorCount;
-        visitorCounter.classList.remove('hidden');
-
-        // Accordion Functionality
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const targetId = header.getAttribute('data-target');
-                const content = document.getElementById(targetId);
-                const icon = header.querySelector('.accordion-icon');
-
-                // Toggle active class
-                content.classList.toggle('active');
-                icon.classList.toggle('active');
-
-                // Smooth transition for accordion
-                if (content.classList.contains('active')) {
-                    content.style.maxHeight = content.scrollHeight + 'px';
+            }
+            
+            // الاستجابة لتغييرات الوضع المظلم/الفاتح
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                if (event.matches) {
+                    document.documentElement.classList.add('dark');
+                    document.getElementById('theme-toggle').textContent = '☀️';
                 } else {
-                    content.style.maxHeight = '0';
+                    document.documentElement.classList.remove('dark');
+                    document.getElementById('theme-toggle').textContent = '🌙';
                 }
+                updateCharts();
             });
-        });
-
-        // Ensure accordion content height is set correctly on resize
-        window.addEventListener('resize', () => {
-            document.querySelectorAll('.accordion-content.active').forEach(content => {
-                content.style.maxHeight = content.scrollHeight + 'px';
+            
+            // تبديل الوضع المظلم/الفاتح
+            document.getElementById('theme-toggle').addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    this.textContent = '☀️';
+                } else {
+                    this.textContent = '🌙';
+                }
+                updateCharts();
             });
+            
+            // فتح/غلق القائمة الجانبية في وضع الجوال
+            document.getElementById('menu-toggle').addEventListener('click', function() {
+                document.getElementById('sidebar').classList.toggle('open');
+            });
+            
+            // إنشاء الرسوم البيانية
+            let flowChartInstance, pressureChartInstance;
+            
+            function createCharts() {
+                // Get Dark Mode Status
+                const isDarkMode = document.documentElement.classList.contains('dark');
+                const fontColor = isDarkMode ? '#e0e0e0' : '#333333';
+                const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+                
+                // Data for Oil Flow Rate Chart
+                const flowCtx = document.getElementById('flowChart').getContext('2d');
+                const flowLabels = generateDateLabels(10);
+                const flowData = generateRandomData(10, 800, 2000);
+                
+                flowChartInstance = new Chart(flowCtx, {
+                    type: 'line',
+                    data: {
+                        labels: flowLabels,
+                        datasets: [{
+                            label: 'معدل تدفق النفط',
+                            data: flowData,
+                            backgroundColor: 'rgba(47, 84, 150, 0.2)',
+                            borderColor: 'rgba(47, 84, 150, 1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                grid: {
+                                    color: gridColor
+                                },
+                                ticks: {
+                                    color: fontColor
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: gridColor
+                                },
+                                ticks: {
+                                    color: fontColor
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: fontColor
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // Data for Pressure Chart
+                const pressureCtx = document.getElementById('pressureChart').getContext('2d');
+                const pressureData1 = generateRandomData(10, 1000, 1400);
+                const pressureData2 = generateRandomData(10, 700, 1000);
+                
+                pressureChartInstance = new Chart(pressureCtx, {
+                    type: 'line',
+                    data: {
+                        labels: flowLabels,
+                        datasets: [{
+                            label: 'ضغط المنبع',
+                            data: pressureData1,
+                            backgroundColor: 'rgba(0, 176, 80, 0.2)',
+                            borderColor: 'rgba(0, 176, 80, 1)',
+                            borderWidth: 2,
+                            tension: 0.3
+                        },{
+                            label: 'ضغط المصب',
+                            data: pressureData2,
+                            backgroundColor: 'rgba(255, 102, 0, 0.2)',
+                            borderColor: 'rgba(255, 102, 0, 1)',
+                            borderWidth: 2,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                grid: {
+                                    color: gridColor
+                                },
+                                ticks: {
+                                    color: fontColor
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: gridColor
+                                },
+                                ticks: {
+                                    color: fontColor
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: fontColor
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            function updateCharts() {
+                if (flowChartInstance) flowChartInstance.destroy();
+                if (pressureChartInstance) pressureChartInstance.destroy();
+                createCharts();
+            }
+            
+            // توليد بيانات مثالية للرسم البياني
+            function generateRandomData(count, min, max) {
+                const data = [];
+                for (let i = 0; i < count; i++) {
+                    data.push(Math.floor(Math.random() * (max - min + 1)) + min);
+                }
+                return data;
+            }
+            
+            // توليد تواريخ متسلسلة
+            function generateDateLabels(count) {
+                const labels = [];
+                const today = new Date();
+                
+                for (let i = count - 1; i >= 0; i--) {
+                    const date = new Date();
+                    date.setDate(today.getDate() - i);
+                    labels.push(date.toLocaleDateString('ar-SA', { month: 'short', day: 'numeric' }));
+                }
+                
+                return labels;
+            }
+            
+            // وظيفة زر التحليل
+            document.getElementById('run-analysis').addEventListener('click', function() {
+                // إظهار حالة التحميل
+                const loader = document.getElementById('analysis-loader');
+                loader.style.display = 'block';
+                
+                // محاكاة وقت التحميل
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                    
+                    // تحديث الجدول ببيانات عشوائية جديدة
+                    updateTableData();
+                    
+                    // تحديث الرسوم البيانية
+                    updateCharts();
+                    
+                    // تحديث ملخص لوحة التحكم
+                    updateDashboardSummary();
+                    
+                }, 1500);
+            });
+            
+            // وظيفة تحديث بيانات الجدول
+            function updateTableData() {
+                const tableBody = document.querySelector('#wells-table tbody');
+                let tableHTML = '';
+                
+                // توليد 5 صفوف من البيانات العشوائية
+                for (let i = 1; i <= 5; i++) {
+                    const wellId = `WELL-00${i}`;
+                    const status = Math.random() > 0.2 ? 
+                        '<td class="status-flowing">Flowing</td>' :
+                        '<td class="status-no-data">No Data</td>';
+                    
+                    const date = new Date();
+                    date.setDate(date.getDate() - Math.floor(Math.random() * 10));
+                    const formattedDate = date.toISOString().split('T')[0];
+                    
+                    // إنشاء بيانات الصف الافتراضية
+                    const tca = (Math.random() * 0.5 + 0.5).toFixed(2);
+                    const cca = (Math.random() * 0.8 + 0.7).toFixed(2);
+                    const cca1 = (Math.random() * 0.5 + 0.5).toFixed(2);
+                    const upstreamPressure = Math.floor(Math.random() * 300 + 1000);
+                    const downstreamPressure = Math.floor(Math.random() * 200 + 700);
+                    const flow = Math.floor(Math.random() * 1000 + 1000);
+                    
+                    tableHTML += `
+                        <tr>
+                            <td>${wellId}</td>
+                            ${status}
+                            <td>${formattedDate}</td>
+                            <td>${tca}</td>
+                            <td>${cca}</td>
+                            <td>${cca1}</td>
+                            <td>${upstreamPressure}</td>
+                            <td>${downstreamPressure}</td>
+                            <td>${flow}</td>
+                        </tr>
+                    `;
+                }
+                
+                tableBody.innerHTML = tableHTML;
+            }
+            
+            // وظيفة تحديث ملخص لوحة التحكم
+            function updateDashboardSummary() {
+                document.getElementById('active-wells').textContent = Math.floor(Math.random() * 5 + 5);
+                document.getElementById('total-flow').textContent = Math.floor(Math.random() * 5000 + 10000).toLocaleString();
+                document.getElementById('avg-pressure').textContent = Math.floor(Math.random() * 400 + 1000);
+                document.getElementById('maintenance-needed').textContent = Math.floor(Math.random() * 4 + 1);
+            }
+            
+            // تهيئة الصفحة
+            checkDarkMode();
+            createCharts();
+            updateDashboardSummary();
         });
     </script>
 </body>
